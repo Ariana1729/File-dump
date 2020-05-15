@@ -420,7 +420,7 @@
 
     $B<N^{\frac1d}$ is a open conjectured theoretical limit for finding `small roots' efficiently
 
-    Take $f(x)=x^2+px\pmod p^2$, if $B=p^{\frac 1d+\epsilon}$, number of small roots is unbounded and our polynomial over integers can't have so many s\break
+    Take $f(x)=x^2+px\pmod p^2$, if $B=p^{\frac 1d+\epsilon}$, number of small roots is unbounded and our polynomial over integers can't have so many roots\break
     
     Add more vectors in $(f(x),N)$ to decrease $\det(G)^{\frac1d}$
 \end{frame}
@@ -461,7 +461,7 @@
     \frametitle{Final improvement}
     Define $g_{i,j}(x)=N^{h-j}f(x)^jx^i$ for some $h$, $0\leq i<d$, $0\leq j<h$ and construct a lattice $G$ using coefficients of $g_{i,j}(Bx)$
     
-    $$\det(G)=N^{d\frac{(h+1)h}2}B^{\frac{(dh-1)dh}2}\quad\dim(G)=dh$$
+    $$\det(G)=N^{\frac{dh(h+1)}2}B^{\frac{(dh-1)dh}2}\quad\dim(G)=dh$$
 
     The shortest vector has length $O\left(N^{\frac{h+1}2}B^{\frac{dh-1}2}\right)$, bounded by $O\left(N^h\right)$ to find small roots
 
@@ -497,13 +497,13 @@
 
     Define $g_{i,j}(x)=N^{h-j}f(x)^jx^i$, $0\leq i<d$, $0\leq j<h$ and $g_{i,h}=f(x)^hx^i$ with $0\leq i<t$ and construct a lattice $G$ using coefficients of $g_{i,j}(Bx)$ and let $n=dh+t$ for convenience.
 
-    $$\det(G)=N^{d\frac{(h-1)h}2}B^{\frac{(n-1)n}2}\quad\dim(G)=n$$
+    $$\det(G)=N^{\frac{dh(h+1)}2}B^{\frac{(n-1)n}2}\quad\dim(G)=n$$
 
-    The shortest vector has length $O\left(N^{\frac{(h-1)h}{2n}}B^{\frac{n-1}2}\right)$, bounded by $O\left(N^{\beta h}\right)$ to find small roots
+    The shortest vector has length $O\left(N^{\frac{dh(h+1)}{2n}}B^{\frac{n-1}2}\right)$, bounded by $O\left(N^{\beta h}\right)$ to find small roots
 
-    $$B<O\left(N^{\frac{n-1}n\left(\frac{2\beta h}n-\frac{d(h-1)h}{n^2}\right)}\right)\overset{n=\frac d\beta h}=O\left(N^{\frac{n-1}n\left(2-\frac{h-1}h\right)\frac{\beta^2}d}\right)$$
+    $$B<O\left(N^{\frac{n-1}n\left(\frac{2\beta h}n-\frac{dh(h+1)}{n^2}\right)}\right)\overset{n=\frac d\beta h}=O\left(N^{\frac{n-1}n\left(2-\frac{h+1}h\right)\frac{\beta^2}d}\right)$$
 
-    $$\lim_{h,n\to\infty}\frac{n-1}n\left(2-\frac{h-1}h\right)\frac{\beta^2}d=\frac{\beta^2}{d}$$
+    $$\lim_{h,n\to\infty}\frac{n-1}n\left(1-\frac1h\right)\frac{\beta^2}d=\frac{\beta^2}{d}$$
 \end{frame}
 
 \begin{frame}
