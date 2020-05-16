@@ -27,7 +27,7 @@
 	\begin{itemize}
 		\item[-]Lattice reduction
 		\item[]
-		\item[-]Applications
+		\item[-]Applications in algorithms
 		\item[]
 		\item[-]Cryptographic attacks
 		\item[]
@@ -332,7 +332,7 @@
     \end{center}
 \end{frame}
 
-\section{Applications}
+\section{Applications in algorithms}
 
 \begin{frame}
     \frametitle{Bounds}
@@ -420,7 +420,7 @@
 
     $B<N^{\frac1d}$ is a open conjectured theoretical limit for finding `small roots' efficiently
 
-    Take $f(x)=x^2+px\pmod p^2$, if $B=p^{\frac 1d+\epsilon}$, number of small roots is unbounded and our polynomial over integers can't have so many roots\break
+    Take $f(x)=x^2+px\pmod{p^2}$, if $B=p^{1+\epsilon}$, number of small roots is unbounded and our polynomial over integers can't have so many roots\break
     
     Add more vectors in $(f(x),N)$ to decrease $\det(G)^{\frac1d}$
 \end{frame}
@@ -472,7 +472,7 @@
 
 \begin{frame}
     \frametitle{Example}
-    For some bound $B$, polynomial $x^3+f_2x^2+f_1x+f_2$ and modulus $N$
+    For some bound $B$, polynomial $x^3+f_2x^2+f_1x+f_0$ and modulus $N$
 
     $h=3$, $g_{i,j}(x)=N^{h-j}f(x)^jx^i$, $0\leq i<d$, $0\leq j<h$
 
@@ -589,9 +589,9 @@
     Example:
 
     $$\begin{pmatrix}
-        N_{2} & N_{3} & 0 \\
-        -N_{1} & 0 & N_{3} \\
-        -N_{1} & -N_{2} & 0
+        N_2 & N_3 & 0 \\
+        -N_1 & 0 & N_3 \\
+        0 & -N_2 & -N_1
     \end{pmatrix}$$
 
     Since $q_iN_j-q_jN_i=q_iq_j\left(p_i-p_j\right)$ is small, LLL is likely to find such a vector and we can take GCD
