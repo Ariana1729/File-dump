@@ -1,0 +1,124 @@
+\documentclass{article}
+\usepackage{graphicx}
+%math packages
+\usepackage{amsmath,amssymb,mathrsfs,physics,amsthm}
+\usepackage{array,pgfplots}
+%for links
+\usepackage{hyperref}
+\hypersetup{colorlinks,citecolor=black,filecolor=black,linkcolor=black,urlcolor=black}
+\title{Characterization of Smart-proof curves}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\date{\today}
+\author{}
+\setlength{\parindent}{0px}
+\newcommand{\End}[1]
+{\text{End}\left(#1\right)}
+\newcommand{\mb}
+{\mathbb}
+\begin{document}
+\maketitle
+\section*{Abstract}
+
+The points of an Elliptic curve over a finite field forms an finite abelian group, hence frequently used in cryptography due to the conjectured difficulty of solving the discrete logarithm problem. However certain classes of curves have computationally simple solutions to the discrete logarithm, for instance curves of trace $1$, known as anomalous curves. This attack was first published by Smart, hence its nickname, the `Smart Attack'. This attack lifts curves from $\mb F_p$ to $\mb Q_p$. However, it has a small chance of lifting to a curve where the attack fails. This paper's main objective is to classify such lifts.
+
+\section{Introduction}
+
+Suppose $kP=Q$ with $P,Q$ known and $k$ unknown. This is the discrete logarithm problem(DLP) for elliptic curves and is generally difficult. However if the trace of the curve is $1$, then this can be translated to the DLP over $\mb F^+_p$, which is simply solving $\frac ab\pmod p$. Such curves are known as anomalous curve. From now all curves are assumed to be anomalous.
+
+For a curve $E\left(\mb F_p\right)$, to translate the DLP to $\mb F^+_p$, first lift it to $E\left(\mb Q_p\right)$ and define the subgroups of the group $E\left(\mb Q_p\right)$: 
+$$E_r=\{(x,y)\in E/\mb Q_p|v_p(x)\leq-2r,v_p(y)\leq-3r\}\cup\{\infty\}$$
+Note that $\frac{E_0}{E_1}\cong E\left(\mb F_p\right)$ and $\frac{E_1}{E_2}\cong\mb F_p^+$, which the first isomorphism given by reduction mod $p$ last isomorphism given by $\psi:(x,y)\to -\frac x{py}$.
+
+Assume that $kP=Q$ in $E\left(\mb F_p\right)$. Lift $P,Q$ to $E\left(\mb Q_p\right)$ and we have $pP,pQ,kP-Q\in E_1$ since curve is of order $p$. Furthermore, $k\psi(pP)-\psi(pQ)=p\psi(kP-Q)=0$, so $k=\frac{\psi(pQ)}{\psi(pP)}$, which is a DLP over $\mb F^+_p$ and is computationally extremely easy. Note that if $pP\in E_2$, then we get $0\cdot k+0=0$, so the proof does not work for this case. For such a lift, the lifted curve is called \emph{Smart-proof}
+
+ \paragraph{Main Objectives} The main objectives of this paper are:
+
+\begin{itemize}
+    \item Show lifts that are Smart-proof occur at a $\frac1p$ probability
+    \item Show that when $a=kp$, the curve is Smart-proof iff $k=0\pmod p$
+    \item Find all Smart-proof curves with $0\leq a,b<p$
+    \item Find all Smart-proof curves
+\end{itemize}
+
+\section{Experimental results}
+
+For a curve $y^2=x^3+ax+b$ over $\mb F_p$, $0\leq a,b<p$, suppose $y^2=x^3+(a+mp)x+(b+np)$ over $\mb Q_p$ is Smart-proof. It can be experimentally shown that:
+
+\begin{itemize}
+    \item When $a=0$, the curve is Smart-proof iff $m=0$.
+    \item When $a\neq0$, every value of $m$ has a unique value of $n$.
+    \item $n(m)=n(0)+km$ for some $k$ coprime to $p$(treating $n$ as a function of $m$)
+    \item For some values of $p$(i.e. $23,29$), $k$ takes on every value once.
+    \item For Smart-proof curves, the attack acts like a random number generator except when $P=\pm Q$ where it gives accurate results.
+\end{itemize}
+
+\section{Smart proof lifts}
+
+\subsection{Alternate characterization}
+
+We have a morphism from $E_1$ to $p\mb Z_p$ given by $(x:y:z)\to\frac xy$. Unfortunately this map is may not be a morphism from $E_0$ to $\mb Z_p$ but instead to some other group. Taking $\mod p^2$, we have $E_1\to\mb Z/p\mb Z$ and $E_0$ to an abelian group of order $p^2$, which is either $\mb Z/p^2\mb Z$ or $\left(\mb Z/p\mb Z\right)^2$. This shows that $E_0$ is either isomorphic to $\mb Z_p$ or $p\mb Z_p\oplus\mb Z/p\mb Z$. In the first case, $pE_0=E_1$ and the curve is not Smart-proof while in the second case, $pE_0=pE_1$ and the curve is Smart-proof.
+
+The smart proof case implies the existence of a $p$-torsion group, so this problem is looking for lifts with a $p$-torsion group.
+
+\subsection{$a=0$}
+
+Rough sketch for proof of $a=0$:
+
+Frobenius isogeny lifts from $\mb F_p$ to $\mb Q_p$
+
+Dual isogeny of frob is separable and has kernel $E\left(\mb F_p\right)$, hence kernel can be lifted to give a $p$-torsion group.
+
+\subsection{General case}
+
+todo: by some serre tate thing lifts parametrized by $\mb Z_p$ and those in $p\mb Z_p$ are smart proof
+
+\iffalse
+
+We have several ways of looking at this problem:
+
+\subsection{Curve over $\mb Z_p\pmod{p^2}$}
+
+One way to look at the curve $y^2=x^3+ax+b$ over $\mb Q_p$ is transforming it to $\mb Z_p$ via $[x:y:z]\to[x:z:y]$ and we end up with $x^3+axy^2+by^3-y=0$. Reduce mod $p^2$ and we have a (abelian) group of points on a curve with $p^2$ elements, so the group is either $\left(\frac{\mb Z}{p\mb Z}\right)^2$ or $\frac{\mb Z}{p^2\mb Z}$. The former gives a Smart-proof lift while latter gives a non-Smart-proof lift as the only $p$-torsion points are of the form $[kp:0:1]$.
+
+This transformation also shows that if $a,b$ results in a Smart-proof curve, then after adding $p^2$ to either $a,b$, the curve remains Smart-proof. Hence to show that $\frac1p$ lifts are smart proof, we only need to show that out of the $p^2$ possible lifts mod $p^2$, $p$ of them are Smart-proof.
+
+The addition laws can be derived easily:
+
+First writing the most general curve and its differential,
+$$x^3+axy^2+by^3-y=0\quad \left(3x^2+ay^2\right)dx+\left(2axy+3by^2-1\right)dy=0$$
+Now given $2$ points $P,Q$, we get the point that connects both of it:
+$$P=\left(P_x,P_y\right),Q=\left(Q_x,Q_y\right),R=P+Q$$
+$$\lambda=\begin{cases}\frac{P_y-Q_y}{P_x-Q_x}&P\neq Q\\\frac{3P_x^2+aP_y^2}{1-2aP_xP_y-3bP_y^2}&P=Q\end{cases}$$
+$$y=\lambda x+\left(P_y-\lambda P_x\right)$$
+With this line, we find the intersection of this with the elliptic curve and solve for $R$ using Vieta's formula
+$$x^3+ax\left(\lambda x+\left(P_y-\lambda P_x\right)\right)^2+b\left(\lambda x+\left(P_y-\lambda P_x\right)\right)^3-\left(\lambda x+\left(P_y-\lambda P_x\right)\right)=0$$
+$$\left(1+a\lambda^2+b\lambda^3\right)x^3 + \lambda\left(2a+3b\lambda\right)\left(P_y-\lambda P_x\right)x^2 + O(x) = 0$$
+$$-R_x=\frac{\lambda\left(2a+3b\lambda\right)\left(\lambda P_x-P_y\right)}{1+a\lambda^2+b\lambda^3}-P_x-Q_x$$
+$$-R_y=\lambda R_x+\left(P_y-\lambda P_x\right)$$
+$$R_x=\frac{\lambda\left(2a+3b\lambda\right)\left(P_y-\lambda P_x\right)}{1+a\lambda^2+b\lambda^3}+P_x+Q_x$$
+$$R_y=-\lambda R_x+\left(\lambda P_x-P_y\right)$$
+Note if $P_x=Q_x$ and $P_y\neq Q_y$, then $R_x=-P_x$ and $R_y=\frac{aP_x}{b}+P_y+Q_y$
+
+\subsection{Isogenies}
+
+Let $f\in\End{E/\overline{\mb F_p}}$ be the Frobenius endomorphism and let $\hat f$ be the dual isogeny. The kernel of the dual isogeny is $E/\mb F_p$, which has order $p$, hence it is separable. Suppose that $f,\hat f$ gets lifted to an endomorphism $\tilde f,\tilde{\hat f}\in\End{E/\mb Q_p}$. Since $\hat f$ is separable, $\ker\hat f\cong\ker\tilde{\hat f}\cong E/\mb F_p$, which is precisely $E_0[p]$. Then $E_0$ splits to $E_1\times E_0[p]$, hence $pE_0=pE_1$. Conversely, if the kernel is trivial then $pE_0=E_1$.
+
+These results show that if for any lifted point $P$, $pP\in E_2$, then this is true for all points, similarly if $pP\in E_1$, then this is true for all points. The former case only occurs iff the Frobenius endomorphism can be lifted to an endomorphism.
+
+Purely speculative, it may occur when the frobenius lifts and this would likely require CM. 
+
+\section{$a=0$, $0<b<p$}
+
+An interesting experimental observation is that curves of the form $y^2=x^3+b$ in $\mathbb Q_p$ is Smart-proof when $0<b<p$.
+\fi
+
+
+%\begin{thebibliography}{9}
+%	\bibitem{paper1} 
+%	\href{link}{name}
+%\end{thebibliography}
+
+ 	
+\end{document}
