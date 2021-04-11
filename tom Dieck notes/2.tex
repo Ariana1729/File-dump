@@ -1,0 +1,198 @@
+\section{Chapter 2}
+
+\subsection{Definitions}
+
+Spaces:
+
+\begin{tabular}{cc}\hline
+    $\mb R^n$&Euclidean space\\\hline
+    $D^n=\left\{x\in\mb R^n|\lVert x\rVert\leq1\right\}$&$n$-disk\\\hline
+    $S^{n-1}=\left\{x\in\mb D^n|\lVert x\rVert=1\right\}$&$n-1$-sphere\\\hline
+    $E^n=D^n-S^{n-1}$&$n$-cell\\\hline
+    $I^n=\left\{x\in\mb R^n|0\leq x_i\leq1\right\}$&$n$-cube\\\hline
+    $\partial I^n=\left\{x\in\mb I^n|\exists i,x_i=0,1\right\}$&boundary of $I^n$\\\hline
+    $\Delta^n=\Delta[n]=\left\{x\in\mb R^{n+1}|x_i\geq0,\sum_ix_i=1\right\}$&$n$-simplex\\\hline
+    $\partial\Delta^n=\left\{x\in\Delta^n|\exists i,x_i=0\right\}$&Boundary of $n$-simplex\\\hline
+\end{tabular}
+
+Path: $u:[a,b]\to X$ from $x=u(a)$ to $y=u(b)$ (usually reparametrized to $[0,1]\to X$)
+
+Inverse path: $u^-:t\to u(1-t)$ from $y$ to $x$
+
+Product path: $u*v:t\to\begin{cases}u(2t)&t\leq\frac12\\v(2t-1)&\frac12\leq t\end{cases}$
+
+Constant path: $k_x:t\to x$
+
+$\pi_0:\TOP\to\SET$
+\begin{itemize}
+    \item $\pi_0(X)$: Set of path connected components of $X$
+    \item $\pi_0(f)([x])=[f(x)]$
+\end{itemize}
+
+$W:\TOP\to\CAT$
+\begin{itemize}
+    \item $W(X)$: Paths $u:[0,a]\to X$ and composition is defined on $[0,a+b]$ for associativity
+    \item $W(f)(x)=f(x),W(f)(u)=f\circ u$
+\end{itemize}
+
+\subsection{Homotopy notions}
+
+Homotopy: $H_t:X\times[0,1]\to Y$ from $f=H_0:X\to Y$ to $g=H_1:X\to Y$; $H:f\simeq g$ (composition/inverse immediate)
+
+Homotopy $H_t:X\to Y$ relative to $A\subset X$ if $H_t:A\to Y$ is independent of $t$
+
+Homotopy between $f$ and a constant map is a null homotopy
+
+Null homotopy of $\id_X:X\to X$ is a contraction
+
+Path category $W(X,Y)$
+\begin{itemize}
+    \item Objects: $f:X\to Y$
+    \item Morphisms: Homotopy $H_t:[0,a]\times X\to Y$ between $f$ and $g$
+\end{itemize}
+
+$\hTOP$ is $\TOP$ quotiented by the homotopy relation.
+
+\begin{tabular}{cc}\hline
+    $\hTOP$&$\TOP$\\\hline
+    Isomorphic&Homotopy equivalent/Same homotopy type\\\hline
+    Isomorphic to $\{*\}$&Contractible\\\hline
+    Isomorphism&h-equivalence\\\hline
+    Constant map&Null homotopic\\\hline
+\end{tabular}
+
+Hom functors in $\hTOP$ of $f:X\to Y$:
+
+\[f_*:[Z,X]\to[Z,Y],g\to fg\quad f^*:[Y,Z]\to [X,Z],h\to hf\]
+
+\begin{rmk}
+    Generally lower index for covariant and upper index for contravariant
+\end{rmk}
+
+$\TOP^0$: Category of pointed spaces
+
+$\hTOP^0$: Quotient of $\TOP^0$ by homotopy
+
+Forgetful functor $\TOP^0\to\TOP$ has a left adjoint, $X\to\left(X+\{*\},*\right)$
+
+\begin{rmk}
+    The smash product $A\wedge B=\frac{A\times B}{A\vee B}$ is always compatible with homotopies and is a tensor product in some appropriate subcategory, i.e. compactly generated spaces
+\end{rmk}
+
+$\TOP(2)$: Pairs of topological spaces $A\subset X$
+
+Note that the product we use here is not the categorical product, instead it is defined as
+
+\[(X,A)\times(Y,B)=(X\times Y,X\times B\cup A\times Y)\]
+
+so that $\left(I^m,\partial I^m\right)\times\left(I^n,\partial I^n\right)=\left(I^{m+n},\partial I^{m+n}\right)$
+
+$\TOP(3)$: Pairs of topological spaces $A\subset B\subset X$
+
+$\TOP_B$: Slice category, objects are morphisms $x:X\to B$ and morphisms are $f:X\to Y$ such that
+\begin{tikzcd}
+X \arrow[rr, "f"'] \arrow[rd, "x"] &   & Y \arrow[ld, "y"'] \\
+                                   & B &                   
+\end{tikzcd}
+\begin{itemize}
+    \item A morphism from $\id_B:B\to B$ to $p:E\to B$ is a section of $p$
+    \item If $p\cong\id_B$ in $\hTOP_B$, then it is shrinkable
+\end{itemize}
+
+$\TOP^K$: Coslice category, objects are morphisms $a:K\to A$ and morphisms are $f:A\to B$ such that
+\begin{tikzcd}
+                  & K \arrow[ld, "a"] \arrow[rd, "b"'] &   \\
+A \arrow[rr, "f"] &                                    & B
+\end{tikzcd}
+\begin{itemize}
+    \item A morphism from $i:K\to X$ to $\id_K:K\to K$ is a retraction of $i$ and $i$ is an embedding
+    \item $i:K\subset X$, then $K$ is a retract of $X$
+    \item If $i\cong\id_K$ in $\hTOP^K$, then it is a deformation retract
+\end{itemize}
+
+Note that $\TOP_{\{*\}}\cong\TOP$ and $\TOP^{\{*\}}\cong\TOP^0$
+
+$H_t:A\to B$ is a homotopy in the (co)slice category if each $H_t,t\in[0,1]$ is a morphism in the (co)slice category, hence we get the quotient categories $\hTOP^K,\hTOP_B$.
+
+\subsection{Internal hom objects}
+
+Let $Y^X$ or $F(X,Y)$ be the set of continuous maps from $X$ to $Y$ with the compact open topology. Suppose that $X$ is locally compact, then $Y^X$ is the exponential object, i.e.
+
+\[\begin{tikzcd}
+    X\times Y \arrow[rd, "f", no head] \arrow[d, "f^\wedge\times\id_Y"', dotted] &   \\
+    Z^Y\times Y \arrow[r, "{e_{Y,Z}}"']                                         & Z
+\end{tikzcd}\]
+
+$f$ induces $f^\wedge$ and $f^\wedge$ induces $f$, alternatively
+
+\[\Hom\left(-\times Y,Z\right)\cong\Hom\left(-,Z^Y\right)\]
+
+which also tells us the functors $-^Y$ is a right adjoint to $-\times Y$.
+
+Unfortunately in categories with zero objects, i.e. $\TOP^0$, then exponential objects generally dont exist unless the category is trivial as if $Y^X$ exists, we have
+
+\[\Hom(X,Y)\cong\Hom\left(0\times X,Y\right)\cong\Hom\left(0,Y^X\right)\cong\{*\}\]
+
+However, we may have some form of tensor-hom adjuncation.
+
+In the category $\TOP^0$, we define $F^0(X,Y)$ as the subspace of pointed maps of $F(X,Y)$ and the constant map is the basepoint. Any pointed map $X\times Y\to Z$ induces a pointed map $X\to F^0(X,Y)$ if it sends $X\times y\cup x\times Y$ to $z$, hence it corresponds to maps from $X\wedge Y\to Z$. The adjuncation in this case reduces to
+
+\[F^0\left(X\wedge Y,Z\right)\cong F^0\left(X,F^0\left(Y,Z\right)\right)\]
+
+when $X,Y$ are locally compact. This gives us our tensor-hom adjuncation.
+
+If we quotient by homotopy and assume $X$ is locally compact and $e_{X,Y}^0$ is continuous, then we get
+
+\[\left[X\wedge Y,Z\right]^0\cong\left[X,F^0(X,Y)\right]^0\]
+
+\subsection{Fundamental groupoid}
+
+$\Pi:\TOP\to\GRPd$
+\begin{itemize}
+    \item $\Pi(X)$: Quotient of $W(X)$ by homotopy
+\end{itemize}
+
+Somewhat cleaner way to state van-Kampen theorem:
+
+\begin{thm*}[\protect{Seifert–Van Kampen \cite[Thm 2.7]{May-concise}}] 
+    Suppose that $\mc U$ is a covering of $X$ such that if $U_1,U_2\in\mc U$, then $U_1\cap U_2\in\mc U$. This turns $\mc U$ into a category where morphisms are inclusions, then 
+
+    \[\Pi(X)\cong\colim_{U\in\mc U}\Pi(U)\]
+\end{thm*}
+
+Choosing a base point, we get the functor $\pi_1:\TOP^0\to\GRP$.
+
+\begin{rmk}
+    Proposition 2.7.3 of tom Dieck that the fundamental group of a monoid in $\TOP^0$ is commutative and agrees with the monoid operation comes from a more general theorem, the Eckmann–Hilton argument
+\end{rmk}
+
+\begin{thm*}[Eckmann-Hilton argument]
+    If $\cdot,*$ are unital binary operations on $X$ with units $1_\cdot$ and $1_*$ such that 
+    \[\left(a\cdot b\right)*\left(c\cdot d\right)=\left(a*b\right)\cdot\left(c*d\right)\]
+    Then $\cdot,*$ coincide, are associative and commutative
+\end{thm*}
+
+\subsection{Enriching $\TOP$}
+
+We give a groupoid structure, $\Pi(X,Y)$ to each hom set $\Hom_{\TOP}(X,Y)$ with homotopy as morphisms. This provides us with a $2$-category, i.e.
+
+\[\begin{tikzcd}
+    X && Y && Z
+	\arrow[""{name=0, anchor=center, inner sep=0}, "g"{description}, from=1-1, to=1-3]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "v"{description}, from=1-3, to=1-5]
+	\arrow[""{name=2, anchor=center, inner sep=0}, "w"', curve={height=40pt}, from=1-3, to=1-5]
+	\arrow[""{name=3, anchor=center, inner sep=0}, "u", curve={height=-40pt}, from=1-3, to=1-5]
+	\arrow[""{name=4, anchor=center, inner sep=0}, "h"', curve={height=40pt}, from=1-1, to=1-3]
+	\arrow[""{name=5, anchor=center, inner sep=0}, "f", curve={height=-40pt}, from=1-1, to=1-3]
+	\arrow["\beta"{description}, shorten <=3pt, shorten >=3pt, Rightarrow, from=0, to=4]
+	\arrow["\gamma"{description}, shorten <=3pt, shorten >=3pt, Rightarrow, from=3, to=1]
+	\arrow["\delta"{description}, shorten <=3pt, shorten >=3pt, Rightarrow, from=1, to=2]
+	\arrow["\alpha"{description}, shorten <=3pt, shorten >=3pt, Rightarrow, from=5, to=0]
+\end{tikzcd}\]
+
+such that all the compositions makes sense, i.e.
+
+\[\left(\delta\gamma\right)\left(\beta\alpha\right)=\left(\delta\beta\right)\left(\gamma\alpha\right)\]
+
+We can enrich similar categories like $\TOP^0$
+

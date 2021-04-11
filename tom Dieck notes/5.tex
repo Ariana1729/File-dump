@@ -1,0 +1,443 @@
+\section{Chapter 5}
+
+\subsection{Cofibration properties}
+
+$i:A\to X$ has the \textbf{homotopy extension property} (HEP) for $Y$ if for every $h,f$, there exists some $H$ such that the (equivalent) diagrams commutes:
+
+\begin{center}
+   \begin{tikzcd}
+        A & {Y^I} \\
+        X & Y
+        \arrow["i"', from=1-1, to=2-1]
+        \arrow["f"', from=2-1, to=2-2]
+        \arrow["H"{description}, dashed, from=2-1, to=1-2]
+        \arrow["h", from=1-1, to=1-2]
+        \arrow["{e^0}", from=1-2, to=2-2]
+    \end{tikzcd}
+    \hspace{2cm}
+    \begin{tikzcd}
+        & X \\
+        A && {X\times I} & Y \\
+        & {A\times I}
+        \arrow["i"', from=2-1, to=1-2]
+        \arrow["{i_0^A}", from=2-1, to=3-2]
+        \arrow["{i_0^X}"', from=1-2, to=2-3]
+        \arrow["i\times\id", from=3-2, to=2-3]
+        \arrow["H"{description}, dashed, from=2-3, to=2-4]
+        \arrow["f", curve={height=-12pt}, from=1-2, to=2-4]
+        \arrow["h"', curve={height=12pt}, from=3-2, to=2-4]
+    \end{tikzcd}
+\end{center}
+
+$H$ is an \textbf{extension} of $h$ with \textbf{initial conditions} $f$. If $i$ has HEP for every space $Y$, then it is a \textbf{cofibration}. This is somewhat similar to being a monomorphism with a cokernel as this allows the factorization of any nullhomotopic map $fi$ through $X/A$, although the factorization may not be unique here. We can determine quickly if a map is a cofibration by studying the mapping cylinder due to the following diagram:
+
+\[\begin{tikzcd}
+	A && X \\
+	& {X\times I} \\
+	{A\times I} && {Z(i)} \\
+	&&& Y
+	\arrow["i", from=1-1, to=1-3]
+	\arrow["{i_0^A}"', from=1-1, to=3-1]
+	\arrow["b", from=1-3, to=3-3]
+	\arrow["k"', from=3-1, to=3-3]
+	\arrow["{i_0^X}"', from=1-3, to=2-2]
+	\arrow["i\times\id", from=3-1, to=2-2]
+	\arrow["r", curve={height=-6pt}, dashed, from=2-2, to=3-3]
+	\arrow["s", curve={height=-6pt}, dotted, from=3-3, to=2-2]
+	\arrow["y", curve={height=-12pt}, from=1-3, to=4-4]
+	\arrow["h"', curve={height=12pt}, from=3-1, to=4-4]
+	\arrow["\sigma"{description}, dotted, from=3-3, to=4-4]
+\end{tikzcd}\]
+
+We have the equivalent statements for a map $i:A\to X$:
+
+\begin{itemize}
+    \item $i$ is a cofibration
+    \item $i$ has HEP for $Z(i)$
+    \item $s:Z(i)\to X\times I$ has a retraction
+\end{itemize}
+
+This tells us that cofibrations must be embeddings as $ki_1=ri_1^Xi:A\to Z(i)$ is an embedding. One can further show for Hausdorff spaces that this is a closed embedding.
+
+$(X,x)$ is \textbf{well-pointed} and $x$ is \textbf{nondegenerate} if $x\in X$ is a cofibration.
+
+Cofibrations are preserved under products of locally compact spaces:
+
+\[\begin{tikzcd}
+	A & {\left(Z^Y\right)^I\cong\left(Z^I\right)^Y} && {A\times Y} & {Z^I} \\
+	X & {Z^Y} && {X\times Y} & Z
+	\arrow["i"', from=1-1, to=2-1]
+	\arrow["{h^\land}", from=1-1, to=1-2]
+	\arrow["{f^\land}"', from=2-1, to=2-2]
+	\arrow["{e^0}", from=1-2, to=2-2]
+	\arrow["{H^\land}"{description}, dashed, from=2-1, to=1-2]
+	\arrow["h", from=1-4, to=1-5]
+	\arrow["f"', from=2-4, to=2-5]
+	\arrow["{e^0}", from=1-5, to=2-5]
+	\arrow["i\times\id"', from=1-4, to=2-4]
+	\arrow["H"{description}, dashed, from=2-4, to=1-5]
+\end{tikzcd}\]
+
+A useful lemma for proofs is that if $A\times I\in X\times I$ has HEP for a space $Y$, then since we have the homeomorphism of pairs $\left(I\times I,I\times0\cup\partial I\times I\right)\cong\left(I\times I,I\times0\right)$, the maps $\phi:A\times I\times I\to Y$ and $\alpha:X\times\left(I\times0\cup\partial I\times I\right)$ induces a map $\Phi:X\times I\times I\to Y$ as long as $\alpha=\phi$ on $A\times\left(I\times0\cup\partial I\times I\right)$. 
+
+We can show HEP is preserved under pushouts by arrow chasing:
+
+\[\begin{tikzcd}
+	A && B \\
+	& {Z^I} \\
+	& Z \\
+	X && Y
+	\arrow["j"', from=1-1, to=4-1]
+	\arrow["f", from=1-1, to=1-3]
+	\arrow["F"', from=4-1, to=4-3]
+	\arrow["J", from=1-3, to=4-3]
+	\arrow["h"{description}, from=1-3, to=2-2]
+	\arrow["\phi"{description}, from=4-3, to=3-2]
+	\arrow["hf"{description}, from=1-1, to=2-2]
+	\arrow["{\phi F}"{description}, from=4-1, to=3-2]
+	\arrow["K", dashed, from=4-1, to=2-2]
+	\arrow["H"', dotted, from=4-3, to=2-2]
+	\arrow["{e^0}"{description}, from=2-2, to=3-2]
+\end{tikzcd}\]
+
+If $j$ is a cofibration, then $J$ is the cofibration \textbf{induced} from $j$ via \textbf{cobase change} along $f$. For every cofibration $j$, this associates every map from $A\to B$ with a cofibration $J$. Furthermore, if we have maps $f,g:A\to B$, a homotopy $\phi:f\to g$ and the induced cofibrations $j_f,j_g$, then we get a morphism $\kappa:j_g\to j_f$ in $\TOP^B$:
+
+\[\begin{tikzcd}
+	A && B \\
+	\\
+	X && {Y_f} \\
+	&&& {Y_g}
+	\arrow[""{name=0, anchor=center, inner sep=0}, "f"', curve={height=18pt}, dashed, from=1-1, to=1-3]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "g", curve={height=-18pt}, from=1-1, to=1-3]
+	\arrow["j"', from=1-1, to=3-1]
+	\arrow["{j_g}", curve={height=-12pt}, from=1-3, to=4-4]
+	\arrow[""{name=2, anchor=center, inner sep=0}, "F"', curve={height=18pt}, dashed, from=3-1, to=3-3]
+	\arrow["G"', curve={height=24pt}, from=3-1, to=4-4]
+	\arrow["{j_f}", from=1-3, to=3-3]
+	\arrow[""{name=3, anchor=center, inner sep=0}, "{\Phi_1}", curve={height=-18pt}, from=3-1, to=3-3]
+    \arrow["\kappa"{description}, from=4-4, to=3-3]
+	\arrow[""{name=4, anchor=center, inner sep=0}, "{\phi_t}"{description}, shorten <=2pt, shorten >=2pt, Rightarrow, from=0, to=1]
+	\arrow[""{name=5, anchor=center, inner sep=0}, "{\Phi_t}"{description}, shorten <=2pt, shorten >=2pt, Rightarrow, from=2, to=3]
+	\arrow[shorten <=5pt, dashed, from=4, to=1-3]
+	\arrow[shorten <=5pt, dashed, from=5, to=3-3]
+	\arrow[shorten >=5pt, dashed, no head, from=3-1, to=5]
+	\arrow[shorten >=5pt, dashed, no head, from=1-1, to=4]
+\end{tikzcd}\]
+
+Although $\kappa$ may not be unique, it turns out that the homotopy class $[\kappa]^B$ only depends $[\phi]$. Let $h\hyp\COF^B$ be the full subcategory of $h\hyp\TOP^B$ of cofibrations under $B$, then we have the contravariant functor $\Pi(A,B)\to h\hyp\COF^B$ with the construction above. Since $\Pi(A,B)$ is a groupoid, we obtain the \textbf{homotopy theorem for cofibrations} stating that $[\kappa]^B$ is an isomorphism in $h\hyp\TOP^B$.
+
+\subsection{Cofibration transport}
+
+Let $i:K\to A$ be a cofibration and $\phi_t:K\to X$ be a homotopy, this induces the map
+
+\[\phi^\sharp:\left[\left(A,i\right),\left(X,\phi_0\right)\right]^K\to\left[\left(A,i\right),\left(X,\phi_1\right)\right]^K\]
+
+defined by $\phi^\sharp\left[\Phi_0\right]=\Phi_1$ for the extension $\Phi_t:A\to X$ of $\phi$ with initial conditions $\Phi_0$. This gives us the \textbf{transport functor} of a cofibration $i:K\to A$ from $\Pi(K,X)\to\SET$ sending $\phi_0\to\left[i,\phi_0\right]^K$ and $[\phi]\to\phi^\sharp$.
+
+This functor tells us the difference between being homotopic in $\TOP$ and in $\TOP^K$ in the sense that if we have morphisms $g,g':K\to X$ in $\TOP$ and $f,f':i\to g,g'$ in $\TOP^K$, then $[f]=[f']$ in $h\hyp\TOP$ iff there exists some $\phi\in\Pi(K,A)$ such that $[f']^K=\phi^\sharp[f]^K$
+
+\subsection{Replacing maps by cofibrations}
+
+We relook at the construction of the mapping cylinder (here the unit interval is flipped from the previous chapter):
+
+\[\begin{tikzcd}
+	{X+X} & {Y+X} \\
+	{X\times I} & {Z(f)}
+	\arrow["{f+\id}", from=1-1, to=1-2]
+	\arrow["{\left<s,j\right>}", from=1-2, to=2-2]
+	\arrow["{\left<i_0,i_1\right>}"', from=1-1, to=2-1]
+	\arrow["a"', from=2-1, to=2-2]
+\end{tikzcd}\]
+
+as $i_0,i_1$ are cofibrations, $s,j$ are cofibrations as well. This gives us the commutative diagram
+
+\[\begin{tikzcd}
+	X & Y & {Y/X} \\
+	X & {Z(f)} & {C(f)}
+	\arrow["{f_1}"{description}, from=1-2, to=2-3]
+	\arrow[Rightarrow, no head, from=1-1, to=2-1]
+	\arrow["j"', from=2-1, to=2-2]
+	\arrow["f", from=1-1, to=1-2]
+	\arrow["p", from=1-2, to=1-3]
+	\arrow["r"', dashed, from=2-3, to=1-3]
+	\arrow["P"', from=2-2, to=2-3]
+	\arrow["s", shift left=1, from=1-2, to=2-2]
+	\arrow["q", shift left=1, from=2-2, to=1-2]
+\end{tikzcd}\]
+
+where
+
+\begin{itemize}
+    \item $j,s,f_1$ are cofibrations
+    \item $s$ is a deformation retraction with inverse $q$
+    \item $f=qj$, $q$ a homotopy equivalence and $j$ a cofibration
+    \item If $f$ is a cofibration, then $q$ is a homotopy equivalence under $X$ and $r$ the induced homotopy equivalence
+\end{itemize}
+
+This factorization is unique in the sense if $f=qj=q'j':X\to Y$, $X\overset j\to Z\overset q\to Y$, $X\overset{j'}\to Z'\overset{q'}\to Y$, then $q,q'$ and $j,j'$ are homotopic and $Z,Z'$ are homotopy equivalent. Define $Z/j(X)$ as the (homotopical) \textbf{cofibre} of $f$, then this implies this cofibre is unique up to homotopy. This gives us an immediate result about homotopy pushouts:
+
+For a pushout diagram
+
+\[\begin{tikzcd}
+	A & B \\
+	X & Y
+	\arrow["f", from=1-1, to=1-2]
+	\arrow["j"', from=1-1, to=2-1]
+	\arrow["F"', from=2-1, to=2-2]
+	\arrow["J", from=1-2, to=2-2]
+\end{tikzcd}\]
+
+with $j$ a cofibration, then this diagram is a homotopy pushout.
+
+\subsection{Characterization of cofibration}
+
+First we note an equivalent condition for cofibrations:
+
+\begin{thm*}[\protect{\cite[Thm 2]{Strom}}] 
+    $i:A\in X$ is a cofibration iff $X\times\{0\}\cup A\times I$ is a retract of $X\times I$
+\end{thm*}
+
+If the inclusion is closed, this is immediate as we have the homeomorphism $X\times\{0\}\cup A\times I\cong Z(i)$. Otherwise the identity map is generally not a homeomorphism, even for inclusions like $(0,1)\subset[0,1]$.
+
+The condition that $X\times\{0\}\cup A\times I$ is a retract of $X\times I$ is equivalent to the existance of a homotopy $\psi_t:X\to X$ relative to $A$ and a map $u:X\to I$ exists such that
+
+\begin{itemize}
+    \item $\psi_0=\id_X$
+    \item $A\subset v^{-1}(0)$
+    \item $\psi_t(x)\in A$ for $t>v(x)$
+\end{itemize}
+
+For a closed inclusion, we define the pair $(X,A)$ a \textbf{neighbourhood deformation retract} (NDR) if we have a homotopy $\psi_t:X\to X$ relative to $A$ and a map $u:X\to I$ exists such that
+
+\begin{itemize}
+    \item $\psi_0=\id_X$
+    \item $A=v^{-1}(0)$
+    \item $\psi_1(x)\in A$ for $1>v(x)$
+\end{itemize}
+
+It follows that $(X,A)$ is a closed cofibration iff it's a NDR.
+
+This also tells us that if $(X,A),(X,B)$ are closed cofibrations, then $(X,A\cup B)$ is a closed cofibration. If $(X,A),(Y,B)$ are cofibrations and $A$ is closed, then $(X,A)\times(Y,B)$ is a cofibration.
+
+\subsection{Fibration properties}
+
+We can dualize the theory of cofibrations to obtain fibrations.
+
+$p:E\to B$ has the \textbf{homotopy lifting property} (HLP) for $X$ if for every $h,a$, there exists some $H$ such that the (equivalent) diagrams commutes:
+
+\begin{center}
+    \begin{tikzcd}
+        B & {X\times I} \\
+        E & X
+        \arrow["p", from=2-1, to=1-1]
+        \arrow["a", from=2-2, to=2-1]
+        \arrow["{i_0^X}"', from=2-2, to=1-2]
+        \arrow["h"', from=1-2, to=1-1]
+        \arrow["H"{description}, dashed, from=1-2, to=2-1]
+    \end{tikzcd}
+    \hspace{2cm}
+    \begin{tikzcd}
+        & E \\
+        B && {E^I} & X \\
+        & {B^I}
+        \arrow["a"', curve={height=12pt}, from=2-4, to=1-2]
+        \arrow["h", curve={height=-12pt}, from=2-4, to=3-2]
+        \arrow["H"{description}, dashed, from=2-4, to=2-3]
+        \arrow["p"', from=1-2, to=2-1]
+        \arrow["{p^I}"', from=2-3, to=3-2]
+        \arrow["{e_B^0}"', from=3-2, to=2-1]
+        \arrow["{e_E^0}"', from=2-3, to=1-2]
+    \end{tikzcd}
+\end{center}
+
+$H$ is an \textbf{lifting} of $h$ with \textbf{initial conditions} $a$. If $p$ has HLP for every space $X$, then it is a \textbf{fibration}. Similarly, fibrations is somewhat like epimorphisms with kernels, We can determine quickly if a map is a fibration by dualizing the mapping cylinder, the space $W(p)$ defined as the pullback
+
+\[\begin{tikzcd}
+	B & E \\
+	{B^I} & {W(p)}
+	\arrow["p"', from=1-2, to=1-1]
+	\arrow["{e_B^0}", from=2-1, to=1-1]
+	\arrow["b"', from=2-2, to=1-2]
+	\arrow["k", from=2-2, to=2-1]
+\end{tikzcd}\]
+
+then by considering the commutative diagram
+
+\[\begin{tikzcd}
+	B && E \\
+	& {E^I} \\
+	{B^I} && {W(p)} \\
+	&&& X
+	\arrow["p"', from=1-3, to=1-1]
+	\arrow["b"', from=3-3, to=1-3]
+	\arrow["k", from=3-3, to=3-1]
+	\arrow["{e_B^0}", from=3-1, to=1-1]
+	\arrow["{e_E^0}", from=2-2, to=1-3]
+	\arrow["{p^I}"', from=2-2, to=3-1]
+	\arrow["r"', curve={height=6pt}, dotted, from=2-2, to=3-3]
+	\arrow["s"', curve={height=6pt}, dashed, from=3-3, to=2-2]
+	\arrow["h", curve={height=-12pt}, from=4-4, to=3-1]
+	\arrow["a"', curve={height=12pt}, from=4-4, to=1-3]
+	\arrow["\rho"{description}, dotted, from=4-4, to=3-3]
+\end{tikzcd}\]
+
+We have the equivalent statements for a map $p:E\to B$:
+
+\begin{itemize}
+    \item $i$ is a cofibration
+    \item $i$ has HEP for $Z(i)$
+    \item $s:Z(i)\to X\times I$ has a retraction
+\end{itemize}
+
+Fibrations are preserved under $\hyp^Y$ for $Y$ locally compact:
+
+\[\begin{tikzcd}
+	B & {X\times Y\times I} && {B^Y} & {X\times I} \\
+	E & {X\times Y} && {E^Y} & X
+	\arrow["{p^Y}", from=2-4, to=1-4]
+	\arrow["{i_0^X}"', from=2-5, to=1-5]
+	\arrow["{a^\land}", from=2-5, to=2-4]
+	\arrow["{h^\land}"', from=1-5, to=1-4]
+	\arrow["{H^\land}"{description}, dashed, from=1-5, to=2-4]
+	\arrow["p", from=2-1, to=1-1]
+	\arrow["h"', from=1-2, to=1-1]
+	\arrow["{i_0^{X\times Y}}"', from=2-2, to=1-2]
+	\arrow["a", from=2-2, to=2-1]
+	\arrow["H"{description}, dashed, from=1-2, to=2-1]
+\end{tikzcd}\]
+
+We can show HLP is preserved under pullbacks by arrow chasing:
+
+\[\begin{tikzcd}
+	B && C \\
+	& {X\times I} \\
+	& X \\
+	E && F
+	\arrow["p", from=4-1, to=1-1]
+	\arrow["P"', from=4-3, to=1-3]
+	\arrow["f"', from=1-3, to=1-1]
+	\arrow["F", from=4-3, to=4-1]
+	\arrow["{i_0^X}"{description}, from=3-2, to=2-2]
+	\arrow["h"{description}, from=2-2, to=1-3]
+	\arrow["a"{description}, from=4-3, to=3-2]
+	\arrow["aF"{description}, from=4-1, to=3-2]
+	\arrow["fh"{description}, from=2-2, to=1-1]
+	\arrow["K"{description}, dashed, from=2-2, to=4-1]
+	\arrow["H"{description}, dotted, from=2-2, to=4-3]
+\end{tikzcd}\]
+
+If $p$ is a fibration, then $P$ is the fibration \textbf{induced} from $p$ via \textbf{base change} along $f$. For every fibration $p$, this associates every map from $B\to C$ with a fibration $P$. Furthermore, if we have maps $f,g:B\to C$, a homotopy $\phi:f\to g$ and the induced fibrations $p_f,p_g$, then we get a morphism $\kappa:p_f\to p_g$ in $\TOP_C$:
+
+\[\begin{tikzcd}
+	B && C \\
+	\\
+	E && {F_f} \\
+	&&& {F_g}
+    \arrow[""{name=0, anchor=center, inner sep=0}, "f", curve={height=-18pt}, dashed, from=1-3, to=1-1]
+    \arrow[""{name=1, anchor=center, inner sep=0}, "g"', curve={height=18pt}, from=1-3, to=1-1]
+    \arrow["\rho", from=3-1, to=1-1]
+    \arrow["{\rho_g}"', curve={height=12pt}, from=4-4, to=1-3]
+    \arrow[""{name=2, anchor=center, inner sep=0}, "F", curve={height=-18pt}, dashed, from=3-3, to=3-1]
+	\arrow["G", curve={height=-24pt}, from=4-4, to=3-1]
+    \arrow["{\rho_f}"', from=3-3, to=1-3]
+    \arrow[""{name=3, anchor=center, inner sep=0}, "{\Phi_1}"', curve={height=18pt}, from=3-3, to=3-1]
+    \arrow["\kappa"{description}, from=3-3, to=4-4]
+    \arrow[""{name=4, anchor=center, inner sep=0}, "{\phi_t}"{description}, shorten <=2pt, shorten >=2pt, Rightarrow, from=0, to=1]
+    \arrow[""{name=5, anchor=center, inner sep=0}, "{\Phi_t}"{description}, shorten <=2pt, shorten >=2pt, Rightarrow, from=2, to=3]
+    \arrow[shorten >=5pt, dashed, no head, from=1-3, to=4]
+    \arrow[shorten >=5pt, dashed, no head, from=3-3, to=5]
+    \arrow[shorten <=5pt, dashed, from=5, to=3-1]
+    \arrow[shorten <=5pt, dashed, from=4, to=1-1]
+\end{tikzcd}\]
+
+Although $\kappa$ may not be unique, it turns out that the homotopy class $[\kappa]_C$ only depends $[\phi]$. Let $h\hyp\FIB_C$ be the full subcategory of $h\hyp\TOP_C$ of fibrations over $C$, then we have the covariant functor $\Pi(C,B)\to h\hyp\FIB_C$ with the construction above. This generalizes the previous section on fibre transport of coverings. Since $\Pi(C,B)$ is a groupoid, we obtain the \textbf{homotopy theorem for fibrations} stating that $[\kappa]_C$ is an isomorphism in $h\hyp\TOP_C$.
+
+\subsection{Fibration transport}
+
+Let $p:E\to B$ be a fibration and $\phi_t:Y\to B$ be a homotopy, this induces the map
+
+\[\phi^\sharp:\left[\left(Y,\phi_0\right),\left(E,p\right)\right]_B\to\left[\left(Y,\phi_0\right),\left(E,p\right)\right]_B\]
+
+defined by $\phi^\sharp\left[\Phi_0\right]=\Phi_1$ for the lifting $\Phi_t:Y\to E$ of $\phi$ with initial conditions $\Phi_0$. This gives us the \textbf{transport functor} of a fibration $p:E\to B$ from $\Pi(Y,B)\to\SET$ sending $\phi_0\to\left[\phi_0,p\right]_B$ and $[\phi]\to\phi^\sharp$.
+
+This functor tells us the difference between being homotopic in $\TOP$ and in $\TOP_B$ in the sense that if we have morphisms $g,g':Y\to B$ in $\TOP$ and $f,f':g,g'\to p$ in $\TOP_B$, then $[f]=[f']$ in $h\hyp\TOP$ iff there exists some $\phi\in\Pi(Y,B)$ such that $[f']_B=\phi^\sharp[f]_B$
+
+\subsection{Replacing maps by fibrations}
+
+We relook at the construction of $W(f)$ for an arbitrary map $f:X\to Y$:
+
+\[\begin{tikzcd}
+	{Y\times Y} & {X\times Y} \\
+	{Y^I} & {W(f)}
+	\arrow["f\times\id"', from=1-2, to=1-1]
+	\arrow["{\left(e^0,e^1\right)}", from=2-1, to=1-1]
+	\arrow[from=2-2, to=2-1]
+	\arrow["{\left(q,p\right)}"', from=2-2, to=1-2]
+\end{tikzcd}\]
+
+as $e_0,e_1$ are fibrations, $p,q$ are fibrations as well. This gives us the commutative diagram
+
+\[\begin{tikzcd}
+	Y & X & {F=f^{-1}(*)} \\
+	Y & {W(f)} & {F(f)=p^{-1}(*)}
+	\arrow[Rightarrow, no head, from=1-1, to=2-1]
+	\arrow["f"', from=1-2, to=1-1]
+	\arrow["p", from=2-2, to=2-1]
+	\arrow["s"', shift right=1, from=1-2, to=2-2]
+	\arrow["q"', shift right=1, from=2-2, to=1-2]
+	\arrow["j"', shift left=1, from=1-3, to=1-2]
+	\arrow["J"', shift left=1, from=2-3, to=2-2]
+    \arrow["{f^1}"{description}, from=2-3, to=1-2]
+	\arrow["r"', dashed, from=2-3, to=1-3]
+\end{tikzcd}\]
+
+where the last column exists for pointed maps and
+
+\begin{itemize}
+    \item $p,q,f^1$ are fibrations
+    \item $s$ is a shrinkable map with inverse $q$
+    \item $f=ps$, $s$ a homotopy equivalence and $p$ a fibration
+    \item If $f$ is a fibration, then $q$ is a homotopy equivalence over $Y$ and $r$ the induced homotopy equivalence
+\end{itemize}
+
+This factorization is unique in the sense if $f=ps=p's':X\to Y$, $X\overset s\to W\overset p\to Y$, $X\overset{s'}\to Z'\overset{p'}\to Y$, then $s,s'$ and $p,p'$ are homotopic and $W,W'$ are homotopy equivalent. Define $p^{-1}(*)$ as the (homotopical) \textbf{fibre} of $f$, then this implies this fibre is unique up to homotopy. This gives us an immediate result about homotopy pushouts:
+
+For a pullback diagram
+
+\[\begin{tikzcd}
+	A & B \\
+	X & Y
+    \arrow["f"', from=1-2, to=1-1]
+    \arrow["p", from=2-1, to=1-1]
+    \arrow["F", from=2-2, to=2-1]
+    \arrow["P"', from=2-2, to=1-2]
+\end{tikzcd}\]
+
+with $p$ a fibration, then this diagram is a homotopy pullback. (Dualize everything in section 4.2)
+
+\subsection{Fibrations and cofibrations}
+
+Finally we note now fibrations and cofibrations behave together.
+
+Let $p:E\to B$ has HLP for $X$ and $i:A\subset X$ is a cofibration and h-equivalence. Suppose we are given $f:X\to B$ and $a:A\to E$ such that $pa=fi$, then a lifting $F$ of $f$ extending $a$ exists:
+
+\[\begin{tikzcd}
+	E & A \\
+	B & X \\
+	{X\times I}
+	\arrow["{i_0^X}"{description}, from=2-2, to=3-1]
+    \arrow["p"{description}, from=1-1, to=2-1]
+	\arrow["i"', hook', from=1-2, to=2-2]
+	\arrow["f"{description}, from=2-2, to=2-1]
+	\arrow["a"{description}, from=1-2, to=1-1]
+	\arrow["F", curve={height=-12pt}, dashed, from=3-1, to=1-1]
+	\arrow["f\Phi"{description}, dashed, from=3-1, to=2-1]
+	\arrow["\Phi"{description}, curve={height=12pt}, dashed, from=3-1, to=2-2]
+\end{tikzcd}\]
+
+In the diagram the map $\Phi$ comes from studying section 5.4 defined as $\Phi_t(x)=\psi_{tv(x)^{-1}}(x)$ and HLP gives $F$ from $f\Phi$.
+
+If $i:A\subset B$ is a closed cofibration of locally compact spaces, the restriction map $p:Z^B\to Z^A$ is a fibration.
+
+Let $p:E\to B$ be a fibration, and $B_0\subset B$ be a cofibration, then $E_0=p^{-1}\left(B_0\right)\subset E$ is a cofibration.
+

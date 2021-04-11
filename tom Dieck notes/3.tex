@@ -1,0 +1,280 @@
+\section{Chapter 3}
+
+\subsection{Definitions}
+
+Suppose $p:E\to B$ is surjective and $U\subset B$ is open
+\begin{itemize}
+    \item \textbf{Trivialization} of $p$ over $U$ is a homeomorphism $p^{-1}(U)\to U\times F$
+    \item $p$ is \textbf{locally trivial} if a open covering $\mc U$ exists where a trivialization of $p$ over $U\in\mc U$ exists for all $U$
+    \item $\mc U$ is a \textbf{bundle chart}
+    \item $F$ is the \textbf{typical fibre} 
+    \item $p$ is \textbf{trivial over} $U$ if a bundle chart over $U$ exists
+    \item \textbf{Bundles}/\textbf{Fibre bundles} are locally trivial maps
+\end{itemize}
+
+\textbf{Covering space}/\textbf{Covering} of $B$ is a locally trivial trivial map $p:E\to B$ with discrete fibres
+\begin{itemize}
+    \item If $\phi_U:p^{-1}(U)\to U\times F$ is a trivialization, then $\phi_U^{-1}\left(U\times\{*\}\right)$ are the \textbf{sheets} over $U$
+    \item If $|F|=n$, then $p$ is a $n$-fold covering
+    \item A \textbf{trivial covering} is the covering $p:B\times F\to B$
+    \item $U$ is \textbf{admissible} or \textbf{evenly covered} if a trivialization exists
+    \item $E$ is the \textbf{total space} and $B$ is the \textbf{base space}
+\end{itemize}
+
+\subsection{Coverings with group actions}
+
+A \textbf{left $G$-principal covering} is a covering $p:E\to B$ and a properly discontinuous group action $G$ on $E$ such that $p(gx)=p(x)$ and the action on fibres are transitive
+
+$\alpha\in\Aut(p)$ if $\alpha:p\to p$ is a morphism in $\TOP_B$. These are \textbf{deck transformations}
+
+The map $x\to gx$ gives a map $G\to\Aut(p)$
+
+\begin{thm*}[Galois correspondence]
+    Let $p:E\to B$ be a covering, then
+    \begin{itemize}
+        \item If $E$ is connected, $\Aut(p)$ is a properly discontinuous action on $E$
+        \item If $B$ is locally path connected, $H$ subgroup of $\Aut(p)$, then $E/H\to B$ is a covering
+    \end{itemize}
+\end{thm*}
+
+A \textbf{right $G$-principal covering} is a covering $p:E\to B$ and a properly discontinuous group action $G$ on $E$ such that $p(xg)=p(x)$ and the action on fibres are transitive.
+
+Let $F$ be a set with a left $G$ action, then the space $E\times_GF$ constructed by quotienting $E\times F$ by $\left(xg,f\right)=\left(x,gf\right)$ is an \textbf{associated covering}.
+
+\begin{rmk}
+    Seems like for this part we need to assume that that $G$ is a free action of the fibres as well and $F$ is given the discrete topology
+\end{rmk}
+
+\begin{thm*}
+    The map $p_F:E\times_GF\to B,(x,f)\to p(f)$ is a covering with typical fibre $F$
+\end{thm*}
+
+\begin{proof}
+    Suppose that $\mc F$ is the typical fibre of $p$.
+
+    First we show the typical fibre of $p_F$ is $F$. It's immediate that the typical fibre is given by $\frac{\mc F\times F}{\sim}$ immediately showing discreteness. Next, notice that $\left\{\left(\mfk f,f\right)|f\in F\right\}$ are the representatives of $\frac{\mc F\times F}{\sim}$ for some arbitrary $\mfk f$ as supose $\mfk f'=\mfk fg$, then $\left(\mfk f',f\right)=\left(\mfk f,gf\right)$ and $\left(\mfk f,f\right)=\left(\mfk f,f'\right)$ implies that either $\mfk f$ has a nontrivial stabalizer or $f=f'$, hence we need to assume the action is free on $\mc F$.
+
+    Next we show that this is indeed a covering. Suppose $U$ has a trivialization, i.e. $p^{-1}(U)\cong U\times\mc F$. Then $\frac{p^{-1}(U)\times F}{\sim}\cong\frac{U\times\mc F\times F}{\sim}\cong U\times F$. Hence $p_F$ is a covering with typical fibre $F$.
+\end{proof}
+
+This gives us the functor
+
+\[A(p):G\hyp\SET\to\COV_B\]
+
+from the category of sets with a left $G$ action to the category of covering spaces over $B$ (a subcategory of $\TOP_B$).
+
+If $A(p)$ is an equivalence of categories, then $p$ is the universal cover
+
+\subsection{Lifting}
+
+$F:X\to E$ is a \textbf{lifting} of $f:X\to B$ along $p:E\to B$ if $pF=f$, i.e. a morphism in $\TOP_B$
+
+If $X$ is connected and $p$ is a covering, liftings that agree somewhere are unique.
+
+A map $p:E\to B$ has \textbf{homotopy lifting property} (HLP) for a space $X$ if for each homotopy $h_t$ and initial condition $H_0$, we can extend $H_0$ to the homotopy $H_t$ such that the diagram commutes:
+
+\[\begin{tikzcd}
+	X && E \\
+	& B
+	\arrow["{H_t}", dotted, from=1-1, to=1-3]
+	\arrow["{h_t}"', from=1-1, to=2-2]
+	\arrow["p", from=1-3, to=2-2]
+\end{tikzcd}\]
+
+$H$ is a lifting of $h$ with initial conditions $a$. $p$ is a \textbf{fibration} if it has HLP for all spaces
+
+\begin{thm*}
+    Coverings $p:E\to B$ are fibrations
+\end{thm*}
+
+\begin{proof}
+    First show that projection maps $U\times F\to U$ are fibrations, then glue these projection maps and use uniqueness of liftings
+\end{proof}
+
+As liftings along coverings are unique, the diagram below is a pullback:
+
+\[\begin{tikzcd} {E^I} & {B^I} \\ E & B
+	\arrow["p"', from=2-1, to=2-2]
+	\arrow["{p^I}", from=1-1, to=1-2]
+	\arrow["{e_B^0}", from=1-2, to=2-2]
+	\arrow["{e_E^0}"', from=1-1, to=2-1]
+\end{tikzcd}\]
+
+Let $p:E\to B$ be a map with HLP for $I$ and $F_b=p^{-1}(b)$.
+
+For every map $[v]\in\Pi(B)$, we obtain a well defined map $v_\sharp:\pi_0\left(F_b\right)\to\pi_0\left(F_c\right)$. Suppose $V:I\to E$ is a lifting of $v$ with $V(0)=x$, then $v_\sharp[x]=\left[V(1)\right]$.
+
+With this we obtain the \textbf{transport functor} $T_p:\Pi(B)\to\SET$
+\begin{itemize}
+    \item $b\to\pi_0(B)$
+    \item $[v]\to v_\sharp$
+\end{itemize}
+
+Let $p(x)=b$ and let $\partial_x:\pi_1\left(B,b\right)\to\pi_0\left(F_b,x\right),[v]\to v_\sharp(x)$ and $i:F_b\subset E$, then we have the exact sequence
+
+\begin{center}
+\begin{tikzpicture}[descr/.style={fill=white,inner sep=1.5pt}]
+        \matrix (m) [
+            matrix of math nodes,
+            row sep=1em,
+            column sep=2.5em,
+            text height=1.5ex, text depth=0.25ex
+        ]
+        { \pi_1\left(F_b,x\right) & \pi_1\left(E,x\right) & \pi_1(B,b) \\
+          \pi_0\left(F_b,x\right) & \pi_0\left(E,x\right) & \pi_0(B,b) \\
+        };
+
+        \path[overlay,->, font=\scriptsize,>=latex]
+        (m-1-1) edge node[auto] {$i_*$} (m-1-2)
+        (m-1-2) edge node[auto] {$p_*$} (m-1-3)
+        (m-1-3) edge[out=355,in=175] node[descr,yshift=0.3ex] {$\partial_x$} (m-2-1)
+        (m-2-1) edge node[auto] {$i_*$} (m-2-2)
+        (m-2-2) edge node[auto] {$p_*$} (m-2-3);
+\end{tikzpicture}
+\end{center}
+
+as well as the isomorphisms of sets $\partial_x:\frac{\pi_1(B,b)}{p_*\pi_1(E,x)}\cong\pi_0\left(F_b,x\right),i_*:\frac{\pi_0\left(F_b,x\right)}{\pi_1(B,b)}\cong\pi_0(E,x)$
+
+For a covering $p:E\to B$ with $B$ path connected, the exact sequence simplifies to
+
+\begin{center}
+\begin{tikzpicture}[descr/.style={fill=white,inner sep=1.5pt}]
+        \matrix (m) [
+            matrix of math nodes,
+            row sep=1em,
+            column sep=2.5em,
+            text height=1.5ex, text depth=0.25ex
+        ]
+        { 1                       & \pi_1\left(E,x\right) & \pi_1(B,b) \\
+          \pi_0\left(F_b,x\right) & \pi_0\left(E,x\right) & \{*\}      \\
+        };
+
+        \path[overlay,->, font=\scriptsize,>=latex]
+        (m-1-1) edge (m-1-2)
+        (m-1-2) edge node[auto] {$p_*$} (m-1-3)
+        (m-1-3) edge[out=355,in=175] node[descr,yshift=0.3ex] {$\partial_x$} (m-2-1)
+        (m-2-1) edge node[auto] {$i_*$} (m-2-2)
+        (m-2-2) edge (m-2-3);
+\end{tikzpicture}
+\end{center}
+
+Furthermore suppose that $p:E\to B$ is a right $G$-principal covering with $E$ path connceted, then we get the exact sequence
+
+\begin{center}
+\begin{tikzpicture}[descr/.style={fill=white,inner sep=1.5pt}]
+        \matrix (m) [
+            matrix of math nodes,
+            row sep=1em,
+            column sep=2.5em,
+            text height=1.5ex, text depth=0.25ex
+        ]
+        { 1 & \pi_1\left(E,x\right) & \pi_1(B,b) & G & 1 \\
+        };
+
+        \path[overlay,->, font=\scriptsize,>=latex]
+        (m-1-1) edge (m-1-2)
+        (m-1-2) edge node[auto] {$p_*$} (m-1-3)
+        (m-1-3) edge node[auto] {$\delta_x$} (m-1-4)
+        (m-1-4) edge (m-1-5);
+\end{tikzpicture}
+\end{center}
+
+and the image of $p_*$ is normal.
+
+\subsection{Coverings}
+
+Outline:
+\begin{enumerate}
+    \item Construct the inverse $X$ of $T:\TRA_B\to\COV_B$ that exists and is an equivalence of categories for sufficiently nice $B$
+    \item Construct the functor $\epsilon_B:\TRA_B\to\pi_b\hyp\SET$ and the inverse $\eta_b$
+    \item Hence $A(p):G\hyp\SET\to\COV_B$ is an equivalence of categories iff the total space of $p$ is simply connected
+\end{enumerate}
+
+Let $\TRA_B=[\Pi(B),\SET]$, the transport functor in the previous section yields the functor $T:\COV_B\to\TRA_B$.
+
+If $B$ is path connected and $T$ is an equivalence of categories, then $B$ is a \textbf{transport space}.
+
+A set $U\in B$ is \textbf{transport simple} if any paths in $U$ between identical points are homotopic in $B$.
+
+$B$ is \textbf{semi-locally simply connected} if it has an open covering with transport simple sets.
+
+$B$ is \textbf{transport local} if it is path connected, locally path connected and semi-locally simply connected.
+
+\begin{thm*}
+    If $B$ is  then $B$ is a transport space
+\end{thm*}
+
+\begin{proof}
+    We need to construct the inverse of $T$, $X:\TRA_B\to\COV_B$. Let $\Phi:\Pi(B)\to\SET$ be some functor, we will construct a covering $p:X(\Phi)\to B$. As a set $X(\Phi)=\coprod_{b\in B}\Phi(b)$. To get a reasonable topology on it, we consider a covering $\mc U$ of $B$ by transport simple path connected open sets. For every $b\in U\in\mc U$, we define $\phi_{U,b}:U\times\Phi(b)\to p^{-1}(U)$ and by gluing these maps together, we obtain a topology on $X(\Phi)$ and a covering $p$.
+    
+    Verification of functoriality and inverse are somewhat direct from definition.
+\end{proof}
+
+With this, consider the hom functor $\Hom_{\Pi(B)}\left(b,-\right)\in\TRA_B$ and let $p^b:E^b\to B$ be its associated covering. Then $E^b$ is simply connected right $\Hom_{\Pi(B)}\left(b,b\right)$-principal covering.
+
+Suppose that $B$ is path connected, then $\Pi=\Pi(B)$ is a connected groupoid. Let $\Pi(x,y)=\Hom_{\Pi(B)}(x,y)$ and $\pi_b=\Pi(b,b)$
+
+For a functor $F:\Pi\to\SET$, we have the left $\pi_B$-set $F(b)$ giving us the functor $\epsilon_b:\TRA_B\to\pi_b\hyp\SET$.
+
+For a left $\pi_B$-set $A$, we define the functor $\Pi(b,-)\times_{\pi_B}A:\Pi\to\SET$ where $A\times_GB$ is the set $A\times B$ quotiented by $(ag,b)=(a,gb)$. This gives us the functor $\eta_b:\pi_b\hyp\SET\to\TRA_B$, the inverse of $\epsilon_b$.
+
+Finally we have the following categories and functors:
+
+\[\begin{tikzcd}
+	G\hyp\SET & \COV_B & \TRA_B & \pi_b\hyp\SET
+	\arrow["{A(p)}", from=1-1, to=1-2]
+	\arrow["T", curve={height=-6pt}, from=1-2, to=1-3]
+	\arrow["X", curve={height=-6pt}, from=1-3, to=1-2]
+	\arrow["\simeq"{description}, draw=none, from=1-2, to=1-3]
+	\arrow["{\epsilon_b}", curve={height=-6pt}, from=1-3, to=1-4]
+	\arrow["{\eta_b}", curve={height=-6pt}, from=1-4, to=1-3]
+	\arrow["\simeq"{description}, draw=none, from=1-3, to=1-4]
+\end{tikzcd}\]
+
+where $X$ exists if $B$ is transport-local and $\epsilon_B,\eta_B$ require $B$ to be path connected to exist.
+
+Finally we have
+
+\begin{thm*}
+    The following are equivalent:
+    \begin{itemize}
+        \item $B$ is a transport space, i.e. $T$ is an equivalence of categories
+        \item $B$ has a universal right $G$-principal covering $p:E\to B$, i.e. $A(p)$ is an equivalence of categories
+    \end{itemize}
+\end{thm*}
+
+Note that the exact sequences above imply that $E$ is simply connected.
+
+Define the \textbf{orbit category} $\Or(G)$ consisting of homogenous $G$-sets ($\frac GH$ for any subgroup $H$) and $G$-maps. This category is a strict subcategory of $G\hyp\SET$, consisting only the transitive sets.
+
+For a covering $p:E\to B$, we obtain the injective map $p_*:\pi_1(E,x)\to\pi_1(B,p(x))$ and the image is called the \textbf{characteristic subgroup} of $p$ wrt $x$.
+
+Let $p:E\to B$ be a simply connected covering, then the subcategory $A(p)\left(\Or(\pi_b)\right)$ of $\COV_B$ is equivalent to the subcategory consisting of connected coverings. This tells us that the connected coverings of a transport space is determined by subgroups of the fundamental group.
+
+\begin{thm*}
+    Let $B$ be a transport space and $p:E\to B$ a covering.
+    \begin{itemize}
+        \item The action of $\Aut(p)$ on $E$ makes it a left-$\Aut(p)$ principal covering
+        \item A simply connected covering is a universal covering
+        \item Universal coverings are unique up to isomorphism
+        \item The automorphism group of a universal cover is isomorphic to $\pi_1(B,b)$
+        \item $E^b$ is simply connected
+        \item We have a Galois correspondence between isomorphism classes of connected coverings and subgroups of $\pi_1(B,b)$
+    \end{itemize}
+\end{thm*}
+
+
+If $B$ is not a transport space but is path connected and locally path connected, then we have a similar result where coverings by path connected total spaces are isomorphic iff the characteristic subgroups are conjugate in $\pi_1(B,b)$.
+
+Suppose we have coverings $p:E\to B$ and $f:Z\to B$, then a covering $\Phi:Z\to E$ such that \begin{tikzcd}
+	Z && E \\
+	& B
+	\arrow["f"', from=1-1, to=2-2]
+	\arrow["p", from=1-3, to=2-2]
+	\arrow["\Phi", dashed, from=1-1, to=1-3]
+\end{tikzcd} exists iff $f_*\pi_1(Z,z)\subset p_*\pi_1(E,x)$ for some $f(z)=p(x)$.
+
+If $X$ is a topological group with identity $x$ and $p:E\to X$ is a covering with $E$ path connected and locally path connected, then for each $e\in p^{-1}(b)$, there exists a unique group structure on $E$ such that $e$ is the identity and $p$ a homomorphism.
+
+
+

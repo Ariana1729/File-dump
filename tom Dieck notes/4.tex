@@ -1,0 +1,420 @@
+\section{Chapter 4}
+
+\subsection{Mapping cylinders}
+
+For a map $f:X\to Y$ \textbf{mapping cylinder} $Z(f)$ is constructed by the pushout
+
+\[\begin{tikzcd}
+	{X+X} & {X+Y} \\
+	{X\times I} & {Z(f)} \\
+	&& Y
+	\arrow["{\left<i_0,i_1\right>}"', from=1-1, to=2-1]
+	\arrow["{\id+f}", from=1-1, to=1-2]
+	\arrow["{\left<j,J\right>}", dashed, from=1-2, to=2-2]
+	\arrow["a"', dashed, from=2-1, to=2-2]
+	\arrow["q"{description}, dashed, from=2-2, to=3-3]
+	\arrow["f"', curve={height=12pt}, from=2-1, to=3-3]
+	\arrow["{\left<f,\id\right>}"{description}, curve={height=-12pt}, from=1-2, to=3-3]
+\end{tikzcd}\]
+
+We also have $Jq\cong\id$ as $X\times I\cong X$ and $f=qj$, $j$ a closed immersion and $q$ a homotopy equivalence. We see that $Z$ has nice functorial properties. Suppose we have the homotopy commutative diagram
+
+\[\begin{tikzcd}
+	X & Y \\
+	{X'} & {Y'} \\
+	{X''} & {Y''}
+	\arrow["f", from=1-1, to=1-2]
+	\arrow["\alpha"', from=1-1, to=2-1]
+	\arrow["\beta", from=1-2, to=2-2]
+	\arrow["{\alpha'}"', from=2-1, to=3-1]
+	\arrow["{f'}"{description}, from=2-1, to=2-2]
+	\arrow["{\beta'}", from=2-2, to=3-2]
+	\arrow["{f''}"{description}, from=3-1, to=3-2]
+\end{tikzcd}\]
+
+and let the homotopy equivalences be $\Phi:f'\alpha\cong\beta f,\Phi':f''\alpha'\cong\beta'f'$
+
+This induces the following homotopy commutative diagram
+
+\[\begin{tikzcd}
+	{X+Y} & {Z(f)} \\
+	{X'+Y'} & {Z(f')} \\
+	{X''+Y''} & {Z(f'')}
+	\arrow["{\alpha+\beta}"', from=1-1, to=2-1]
+	\arrow["{\alpha'+\beta'}"', from=2-1, to=3-1]
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=3-1, to=3-2]
+	\arrow[from=2-1, to=2-2]
+	\arrow["{Z(\alpha,\beta,\Phi)}", from=1-2, to=2-2]
+	\arrow["{Z(\alpha',\beta',\Phi'')}", from=2-2, to=3-2]
+\end{tikzcd}\]
+
+where each small square commutes in $\TOP$ and the whole diagram commutes in $\hTOP$.
+
+Given maps $f:A\to B$ and $g:A\to C$, we can construct the double mapping cylinder by either of the two pushouts:
+
+\[\begin{tikzcd}
+	{A+A} & {B+C} \\
+	{A\times I} & {Z(f,g)}
+	\arrow["{f+g}", from=1-1, to=1-2]
+	\arrow["{\left<i_0,i_1\right>}"', from=1-1, to=2-1]
+	\arrow[dashed, from=2-1, to=2-2]
+	\arrow["{\left<j_0,j_1\right>}", dashed, from=1-2, to=2-2]
+\end{tikzcd}\]
+\[\begin{tikzcd}
+	A & {Z(f)} \\
+	{Z(g)} & {Z(f,g)}
+	\arrow["{j^B}", from=1-1, to=1-2]
+	\arrow["{j^C}"', from=1-1, to=2-1]
+	\arrow[dashed, from=2-1, to=2-2]
+	\arrow[dashed, from=1-2, to=2-2]
+\end{tikzcd}\]
+
+The functorality of the double mapping cylinder can be seem from the following commutative homotopy diagram:
+
+\[\begin{tikzcd}[column sep=3pt,row sep=4pt]
+	&&&&& {A+B} \\
+	& A &&& {Z(f)} && {A'+B'} \\
+	&& {A'} &&& {Z(f')} && {A''+B''} \\
+	&&& {A''} &&& {Z(f'')} \\
+	& {Z(g)} &&& {Z(f,g)} \\
+	{A+C} && {Z(g')} &&& {Z(f',g')} \\
+	& {A'+C'} && {Z(g'')} &&& {Z(f'',g')} \\
+	&& {A''+C''}
+	\arrow[from=2-2, to=3-3]
+	\arrow[from=3-3, to=4-4]
+	\arrow[from=2-2, to=2-5]
+	\arrow[from=2-2, to=5-2]
+	\arrow[dashed, from=5-2, to=5-5]
+	\arrow[dashed, from=2-5, to=5-5]
+	\arrow[from=1-6, to=2-5]
+	\arrow[from=6-1, to=5-2]
+	\arrow[dashed, from=4-7, to=7-7]
+	\arrow[dashed, from=7-4, to=7-7]
+	\arrow[dashed, from=3-6, to=6-6]
+	\arrow[dashed, from=6-3, to=6-6]
+	\arrow[from=5-5, to=6-6]
+	\arrow[from=6-6, to=7-7]
+	\arrow[from=7-2, to=6-3]
+	\arrow[from=8-3, to=7-4]
+	\arrow[from=2-7, to=3-6]
+	\arrow[from=3-8, to=4-7]
+	\arrow[from=3-3, to=6-3, crossing over]
+	\arrow[from=4-4, to=7-4, crossing over]
+	\arrow[from=4-4, to=4-7, crossing over]
+	\arrow[from=3-3, to=3-6, crossing over]
+	\arrow[""{name=0, anchor=center, inner sep=0}, from=5-2, to=6-3]
+	\arrow[""{name=1, anchor=center, inner sep=0}, from=6-3, to=7-4]
+	\arrow[""{name=2, anchor=center, inner sep=0}, from=2-5, to=3-6]
+	\arrow[""{name=3, anchor=center, inner sep=0}, from=3-6, to=4-7]
+	\arrow[""{name=4, anchor=center, inner sep=0}, from=1-6, to=2-7]
+	\arrow[""{name=5, anchor=center, inner sep=0}, from=2-7, to=3-8]
+	\arrow[""{name=6, anchor=center, inner sep=0}, from=6-1, to=7-2]
+	\arrow[""{name=7, anchor=center, inner sep=0}, from=7-2, to=8-3]
+	\arrow[shorten <=9pt, shorten >=9pt, Rightarrow, from=7, to=1]
+	\arrow[shorten <=9pt, shorten >=9pt, Rightarrow, from=4, to=2]
+	\arrow[shorten <=9pt, shorten >=9pt, Rightarrow, from=5, to=3]
+	\arrow[shorten <=9pt, shorten >=9pt, Rightarrow, from=6, to=0]
+\end{tikzcd}\]
+
+Suppose we have the homotopy commutative diagram
+
+\[\begin{tikzcd}
+	{X_0} & {X_+} & \\
+	{X_-} & X \\
+	& & {Z\left(f_-,f_+\right)} \\
+	\arrow["{f_+}", from=1-1, to=1-2]
+	\arrow["{f_-}"', from=1-1, to=2-1]
+	\arrow["{j_+}", from=1-2, to=2-2]
+	\arrow["{j_-}"', from=2-1, to=2-2]
+	\arrow[curve={height=-12pt}, dashed, from=1-2, to=3-3]
+	\arrow[curve={height=12pt}, dashed, from=2-1, to=3-3]
+	\arrow["\phi"{description}, dashed, from=3-3, to=2-2]
+\end{tikzcd}\]
+
+The square is called a \textbf{homotopy pushout} or \textbf{homotopy cocartesian} if $\phi$ is a homotopy equivalence (i.e. a pushout in the category $\hTOP$)
+
+Let $f_\pm,j_\pm$ be inclusions and $X=X_+\cup X_-$, then the diagram is a pushout in $\TOP$.
+
+Let $N\left(X_-,X_+\right)=X_-\times0\cup X_0\times I\times X_+\times 1$ be a subspace of $X\times I$ and let $p_N:N\left(X_-,X_+\right)\to X$ be the projection map.
+
+The covering $X_\pm$ is \textbf{numerable} if $p_N$ has a section. With this, we have the following condition to determine if the diagram above is a pushout in $\hTOP$:
+
+\begin{thm}
+    $Z\left(f_-,f_+\right)\cong X$ if the covering $X_\pm$ is numerable
+\end{thm}
+
+Given the projection maps $X\overset f\leftarrow X\times Y\overset g\to Y$, the double mapping cylinder $Z(f,g)=X\star Y$ is known as the \textbf{join} of $X$ and $Y$
+
+\subsection{Suspensions and loops}
+
+Here we work in pointed categories
+
+The \textbf{suspension} functor $\Sigma:\TOP^0\to\TOP^0$ is given by
+\begin{itemize}
+    \item $\Sigma X=S^1\wedge X=\frac{X\times I}{X\times\partial I\cup\{x\}\times I}$
+    \item $S\Sigma_*\left[X,Y\right]^0=\left[\Sigma X,\Sigma Y\right]^0$
+\end{itemize}
+
+Note that $\Sigma_*$ is a homomorphism if $X=\Sigma A$ and any pointed homotopy $H_t:X\to Y$ corresponds uniquely to a pointed map $\overline K:\Sigma X\to Y$
+
+The set $\left[\Sigma X,Y\right]^0$ has a natural group structure by composition of homotopies. Furthermore as $\left[\Sigma^nX,Y\right]^0$ has $n$ natural composition laws by composin the homotopies at the the $i$th coordinate and these satisfies the assumptions of Eckmann-Hilton argument, they are equivalent. This also tells us that the higher homotopy groups, $\pi_n(X)=\left[S^n,X\right]^0$, are commutative groups.
+
+We can dualize everything above:
+
+The \textbf{loop} space of $X$ is $\Omega X=F^0\left(S^1,X\right)$. This consists of loops in $X$ with basepoint $x$. This is naturally a topological group with the product of loops. 
+
+There is a natural group structure on $\Hom_{\TOP^0}\left(X,\Omega Y\right)$ given by $[f]+_m[g]=[f][g]$.
+
+As $S^1$ is locally compact, we have the tensor-hom adjuncation
+
+\[\left[\Sigma X,Y\right]^0\cong\left[X,\Omega Y\right]^0\]
+
+and this commutes with the group operation.
+
+In the set $\left[\Sigma X,\Omega Y\right]^0$, by the Eckmann-Hilton argument, the group operations on these two sets coincide and are commutative.
+
+\subsection{Group objects}
+
+Perhaps a nicer way of looking at group/any objects is via Yoneda's lemma, see \cite{Waterhouse-Grp-schemes} for more details:
+
+\begin{thm}[Yoneda]
+    For any category $C$, we have a full and faithful functor, the Yoneda embedding $y_C:C\to\left[C^{\op},\SET\right]$, given by $y_C(c)\to\Hom_C\left(-,c\right)$
+\end{thm}
+
+An object $g\in C$ is a \textbf{group object} if the functor $y_C(g)$ factors through $\GRP$, i.e. the following diagram commutes where $\GRP\to\SET$ is the forgetful functor
+
+\[\begin{tikzcd}
+	& \GRP & \\
+	{C^{\op}} && \SET \\
+	\arrow[hook, from=1-2, to=2-3]
+	\arrow["{y_C(g)}"', from=2-1, to=2-3]
+	\arrow["G", dashed, from=2-1, to=1-2]
+\end{tikzcd}\]
+
+To give an explicit construction, recall that for a group $G$, we need to have a unit element, an inverse operation and a group operation, given by
+
+\begin{align*}
+    e_G&:1\to G\\
+    \text{inv}_G&:G\to G^{\op}\\
+    \cdot_G&:G\times G\to G
+\end{align*}
+
+such that the following diagrams commute to ensure associativity, unit and inverse holds:
+
+\[\begin{tikzcd}
+	{G\times G\times G} & {G\times G} && G & {G\times G} && G & {G\times G}\\
+	{G\times G} & G && {G\times G} & G && {G\times G} & G
+	\arrow["{\cdot_G}"', from=2-1, to=2-2]
+	\arrow["{\cdot_G}", from=1-2, to=2-2]
+	\arrow["{\cdot_G\times \id_G}"', from=1-1, to=2-1]
+	\arrow["{\id_G\times\cdot_G}", from=1-1, to=1-2]
+	\arrow[Rightarrow, no head, from=1-4, to=2-5]
+	\arrow["{\left(e,\id_G\right)}", from=1-4, to=1-5]
+	\arrow["{\cdot_G}", from=1-5, to=2-5]
+	\arrow["{\left(\id_G,\text{inv}_G\right)}"', from=1-7, to=2-7]
+	\arrow["{\left(\text{inv}_G,\id_G\right)}", from=1-7, to=1-8]
+	\arrow["{\cdot_G}", from=1-8, to=2-8]
+	\arrow["{\cdot_G}"', from=2-7, to=2-8]
+	\arrow["{\left(\id_G,e\right)}"', from=1-4, to=2-4]
+	\arrow["{\cdot_G}"', from=2-4, to=2-5]
+	\arrow["e"{description}, from=1-7, to=2-8]
+\end{tikzcd}\]
+
+where $e:G\to G$ is the composite morphism $G\to 1\overset{e_G}\to G$
+
+The maps can immediately be constructed by Yoneda's lemma, take for instance the product map. If $g$ is a group object with $G:C^{\op}\to\GRP$ as the functor to group and $f:c\to d$ is a morphism in $C$, then the following diagram commutes:
+
+\[\begin{tikzcd}
+	{G(c)\times G(c)} & {G(c)} \\
+	{G(d)\times G(d)} & {G(d)}
+	\arrow["{\cdot_{G(d)}}"', from=2-1, to=2-2]
+	\arrow["{\cdot_{G(c)}}", from=1-1, to=1-2]
+	\arrow["{G(f)}"', from=2-2, to=1-2]
+	\arrow["{G(f)\times G(f)}", from=2-1, to=1-1]
+\end{tikzcd}\]
+
+telling us we have a natural transformation $\cdot_G:G\times G\to G$. This gives us the morphism $\cdot_g:g\times g\to g$ by Yoneda's lemma and as the Yoneda embedding is full and faithful, the commutativity of the diagrams above defining a group is immediate.
+
+Similarly one defines cogroups as group objects in the opposite category. With this view, it is immediate that if $c\in C$ is a cogroup, then $\Hom_C(c,-)$ is a functor to $\GRP$.
+
+As examples in $\hTOP^0$, $\Sigma X$ is a cogroup as $\left[\Sigma X,Y\right]^0$ is a group and $\Omega Y$ is a group as $\left[X,\Omega Y\right]^0$ is a group.
+
+\subsection{Fibre sequence}
+
+Again here we work in pointed spaces. A map $f:X\to Y$ induces a map $f^*:[Y,B]^0\to[X,B]^0$. The kernels of $f$ is any element that gets sent to the basepoint of $Y$ and the kernel of $f^*$ is any element that gets sent to a nullhomotopic element. This allows us to define exact sequences of topological spaces.
+
+A sequence of spaces $U\overset f\to V\overset g\to W$ is \textbf{h-coexact} if for all spaces $B$, the sequence
+\[[U,B]^0\overset{f^*}\leftarrow[V,B]^0\overset{g^*}\leftarrow[W,B]^0\]
+is exact.
+
+The \textbf{cylinder} $XI=\frac{X\times I}{*\times I}$ describes homotopies in $\TOP^0$ (morphisms $XI\to Y$ are homotopies).
+
+The \textbf{cone} $CX=\frac{X\times I}{X\times 0\cup*\times I}=X\wedge I$ describes homotopies starting from constant maps in $\TOP^0$.
+
+Define $C(f)$ as the pushout
+
+\[\begin{tikzcd}
+	X & Y \\
+	CX & {C(f)}
+	\arrow["f", from=1-1, to=1-2]
+	\arrow["{i_1}"', from=1-1, to=2-1]
+	\arrow["j"', from=2-1, to=2-2]
+	\arrow["{f_1}", from=1-2, to=2-2]
+\end{tikzcd}\]
+
+and by its universal property, we have the h-coexact sequence $X\overset f\to Y\overset{f_1}\to C(f)$ which can be iterated to create a long h-coexact sequence
+
+\[X\overset f\to Y\overset{f_1}\to C(f)\overset{f_2}\to C\left(f_1\right)\overset{f_3}\to\dots\]
+
+Furthermore we have the commutative diagram
+
+\[\begin{tikzcd}
+	X & CX & {Y/i_1X} & {=\Sigma X} \\
+	Y & {C(f)} & {C(f)/f_1Y} & {=\Sigma X} \\
+	CY & {C\left(f_1\right)} & {C\left(f_1\right)/j_1Y} & {=\Sigma X}
+	\arrow["{i_1}", from=1-1, to=1-2]
+	\arrow["f"', from=1-1, to=2-1]
+	\arrow["{f_1}"{description}, from=2-1, to=2-2]
+	\arrow["j", from=1-2, to=2-2]
+	\arrow["{i_1}"', from=2-1, to=3-1]
+	\arrow["{f_2}", from=2-2, to=3-2]
+	\arrow["{j_1}"', from=3-1, to=3-2]
+	\arrow["p", from=1-2, to=1-3]
+	\arrow["{p(f)}"{description}, from=2-2, to=2-3]
+	\arrow["{q(f)}"', from=3-2, to=3-3]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=2-3, to=3-3]
+\end{tikzcd}\]
+
+and $q(f)$ is a homotopy equivalence.
+
+Applying this to itself, we obtain
+
+\[\begin{tikzcd}
+	X & CX \\
+	Y & {C(f)} & {\Sigma X} \\
+	CY & {C\left(f_1\right)} \\
+	& {C\left(f_2\right)} & {\Sigma Y}
+	\arrow["f"', from=1-1, to=2-1]
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=2-1, to=3-1]
+	\arrow[from=3-1, to=3-2]
+	\arrow["{f_3}"', from=3-2, to=4-2]
+	\arrow["{q\left(f_1\right)}"', from=4-2, to=4-3]
+	\arrow[from=2-2, to=2-3]
+	\arrow["{f_2}"', from=2-2, to=3-2]
+	\arrow["{f_1}", from=2-1, to=2-2]
+	\arrow["{q(f)}"', from=3-2, to=2-3]
+	\arrow["{p\left(f_1\right)}", from=3-2, to=4-3]
+	\arrow["{\Sigma f\circ\iota}", from=2-3, to=4-3]
+\end{tikzcd}\]
+
+where $\iota:(x,t)\to(x,1-t)$ to ensure commtuativity.
+
+As $q(f),q\left(f_1\right)$ are homotopy equivalences and a sequence remains h-coexact if we replace elements with h-equivalent ones, we obtain the h-coexact sequence
+
+\[X\to Y\to C(f)\to\Sigma X\to\Sigma Y\]
+
+And we can apply this sequence to itself iteratively and noting that $\Sigma$ and $C$ commutes to obtain the \textbf{Puppe-sequence} or the \textbf{cofibre sequence} of $f$:
+
+\[X\to Y\to C(f)\to\Sigma X\to\Sigma Y\to\Sigma C(f)\to\Sigma C(f)\to\Sigma^2X\to\Sigma^2Y\dots\]
+
+as $\Sigma f:\Sigma X\to\Sigma Y$
+
+Applying the functor $\left[-,B\right]^0$, we see that from the 4th place onwards these are groups and from the 7th place onwards these are abelian groups.
+
+For any map $f:X\to Y$, let $\mu:C(f)\to\Sigma X\vee C(f)$ be defined as 
+\[\mu(x,t)=\begin{cases}\left((x,2t),*\right)&2t\leq 1\\\left(*,(x,2t-1)\right)&2t\geq 1\end{cases}\]
+and $\mu(y)=y$. This map is a \textbf{h-coaction} of the h-cogroup $\Sigma X$ on $C(f)$ as we have
+\[\left[\Sigma X,B\right]^0\times\left[C(f),B\right]^0\cong\left[\Sigma X\vee C(f),B\right]^0\to\left[C(f),B\right]\]
+
+where the last map is induced by $\mu$. 
+
+With the map $Y\overset{f_1}\to C(f)\overset{p(f)}\to\Sigma X$ and any maps $\alpha_1,\alpha_2:\Sigma X\to B$, this group action satisfies $\left(\alpha_1\right)\left(p(f)^*\alpha_2\right)=p(f)^*\left(\alpha_1\alpha_2\right)$ and $f_1^*$ is an injective map on orbits of this action.
+
+We can dualize everything as always.
+
+A sequence of spaces $U\overset f\to V\overset g\to W$ is \textbf{h-exact} if for all spaces $B$, the sequence
+\[[B,U]^0\overset{f^*}\to[B,V]^0\overset{g^*}\to[B,W]^0\]
+is exact.
+
+To dualize the cone, we use the exponential object adjuncation $\left[X\wedge I,Y\right]^0\cong\left[X,F^0(Y,I)\right]^0$ and define $FY=F^0(Y,I)$. We then define $F(f)$ as the pullback
+
+\[\begin{tikzcd}
+	{F(f)} & FY \\
+	X & Y
+	\arrow["f"', from=2-1, to=2-2]
+	\arrow["{e^1}", from=1-2, to=2-2]
+	\arrow["{f^1}"', dashed, from=1-1, to=2-1]
+	\arrow["q", dashed, from=1-1, to=1-2]
+\end{tikzcd}\]
+
+and by its universal property, we have the h-exact sequence $F(f)\overset{f_1}\to X\overset f\to Y$ which can be iterated to create a long h-exact sequence
+
+\[\dots\overset{f^4}\to F\left(f^2\right)\overset{f^3}\to F\left(f^1\right)\overset{f^2}\to F(f)\overset{f^1}\to X\overset f\to Y\]
+
+We can dualize the diagrams above to obtain
+
+\[\begin{tikzcd}
+	Y & FY & {\Omega Y} \\
+	X & {F(f)} & {\Omega Y} \\
+	FX & {F\left(f^1\right)} & {\Omega Y}
+	\arrow["{e^1}"', from=1-2, to=1-1]
+	\arrow["f", from=2-1, to=1-1]
+	\arrow["{f^1}"{description}, from=2-2, to=2-1]
+	\arrow["q"', from=2-2, to=1-2]
+	\arrow["i"', from=1-3, to=1-2]
+	\arrow["{e^1}", from=3-1, to=2-1]
+	\arrow["{f^2}"', from=3-2, to=2-2]
+	\arrow["{q^1}", from=3-2, to=3-1]
+	\arrow["{i(f)}"{description}, from=2-3, to=2-2]
+	\arrow[from=2-3, to=1-3]
+	\arrow[from=3-3, to=2-3]
+	\arrow["{j(f)}", from=3-3, to=3-2]
+\end{tikzcd}\]
+
+where $j(f)$ is a h-equivalence and using this on itself, we obtain
+
+\[\begin{tikzcd}
+	Y & FY \\
+	X & {F(f)} & {\Omega Y} \\
+	FX & {F\left(f^1\right)} \\
+	& {F\left(f^2\right)} & {\Omega X}
+	\arrow[from=1-2, to=1-1]
+	\arrow["f", from=2-1, to=1-1]
+	\arrow["{f^1}"', from=2-2, to=2-1]
+	\arrow[from=2-2, to=1-2]
+	\arrow[from=3-1, to=2-1]
+	\arrow["{f^2}", from=3-2, to=2-2]
+	\arrow[from=3-2, to=3-1]
+	\arrow["{i(f)}"', from=2-3, to=2-2]
+	\arrow["{i\left(f^1\right)}"', from=4-3, to=3-2]
+	\arrow["{j(f)}", from=2-3, to=3-2]
+	\arrow["{f^3}", from=4-2, to=3-2]
+	\arrow["{j\left(f^1\right)}", from=4-3, to=4-2]
+	\arrow["{\iota\circ\Omega f}"', from=4-3, to=2-3]
+\end{tikzcd}\]
+
+and finally we obtain the dual long h-exact sequence
+
+\[\Omega X\to\Omega Y\to F(f)\to X\to Y\]
+
+and repeating this on the map $\Omega f:\Omega X\to\Omega Y$, we obtain the long h-exact sequence
+
+\[\dots\Omega^2X\to\Omega^2Y\to\Omega F(f)\to\Omega X\to\Omega Y\to F(f)\to X\to Y\]
+
+known as the \textbf{fibre seqence} of $f$. Similarly applying the functor $\left[B,-\right]^0$, we see that from the 4th place onwards these are groups and from the 7th place onwards these are abelian groups.
+
+Finally to dualize the group action, again let $f:X\to Y$ be any map. We have the h-action $m:\Omega Y\times F(f)\to F(f)$ defined as
+
+\[m\left(\left[f(t),\left(x,g(t)\right)\right]\right)=\begin{cases}\left(x,f(2t)\right)&2t\leq1\\\left(x,g(2t-1)\right)&2t\geq1\end{cases}\]
+
+This map induces the map
+
+\[\left[B,\Omega Y\right]^0\times\left[B,F(f)\right]^0\cong\left[B,\Omega Y\times F(f)\right]^0\to\left[B,F(f)\right]^0\]
+
+Furthermore with the maps $\Omega Y\overset{i(f)}\to F(f)\overset{f^1}\to X$ and any maps $\alpha_1,\alpha_2:B\to\Omega Y$, this group action satisfies $\left(i(f)_*\alpha_1\right)\left(\alpha_2\right)=i(f)_*\left(\alpha_1\alpha_2\right)$ and $f^1_*$ is an injective map on the orbits of the action.
+
+Note that these sequences can be used to prove the long exact sequence of homotopy groups and the Mayer Vietoris exact sequence.
