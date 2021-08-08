@@ -1,0 +1,147 @@
+\section{Chapter 7}
+
+\subsection{Stable homotopy category}
+
+We have the suspension morphism $\Sigma:\pi_k(X)\to\pi_{k+1}(\Sigma X)$ that may be stable after sufficient iterations, for instance for spheres. This leads us to motivate the definition of the stable homotopy category where morphisms are taken as colimits. Formally, the category $\ST$ has
+\begin{itemize}
+    \item Objects: $(X,n),X\in\TOP^0,n\in\mb Z$
+    \item Morphisms: $\Hom_\S\left((X,n),(Y,m)\right)=\colim_k\Hom_{\TOP^0}\left(\Sigma^{n+k}X,\Sigma^{m+k}Y\right)$
+    \item Tensor: $(X,n)\otimes(Y,m)=(X\wedge Y,m+n)$
+\end{itemize}
+This category is symmetric monoidial if the smash product is associative, i.e. for compactly generated spaces. Although the $\Hom$ sets are groups, the category is not additive. We tend to write $(X,0)$ as $X$.
+
+$(X,n)$ and $(Y,m)$ are isomorphic in $\ST$ iff there exists some $k$ such that $\Sigma^{n+k}X\cong\Sigma^{m+k}Y$. If $X\cong Y$ in $\ST$, then $X$ and $Y$ are stably homotopic.
+
+For certain cases, we have explicit computations for the $\Hom$ groups:
+\[\Hom_{\ST}\left(S^n,S^n\right)=\mb Z\]
+\[\Hom_{\ST}\left(S^0,X\right)=\mb Z^{\left|\pi_0(X)\right|-1}\quad\text{if $X$ is well-pointed}\]
+
+\subsection{Duality}
+
+This section aims to construct the category $\mc C$ with objects $\left(\mb R^n,X\right)$ and morphisms are proper maps $f:X\to Y$ as well as the functor $D:\mb C\to\ST$. For convenience, we define the notation $A|B=(A,A-B)$.
+
+The functor $D$ sends $\left(\mb R^n,X\right)$ to $\left(C\left(\mb R^n|X\right),-n\right)$ where $C(A,B)=C(B\subset A)$ is the mapping cone. The construction $Df$ is a bit more complicated:
+
+Define a \textbf{scaling function} for some proper map $f:X\to Y$ as a function $\phi:Y\to(0,\infty)$ such that $\phi\left(f(x)\right)\geq\lVert x\rVert$. We can immediately see one exists by the function
+\[\psi\left(f(x)\right)=\max\left\{\lVert x'\rVert\left|x'\in X,\lVert f(x')\rVert\leq\lVert f(x)\rVert\right.\right\}+1\]
+With this function, define $M(\phi)=\left\{(x,y)|\phi(y)\geq\lVert x\rVert\right\}$ and $G(f)=\left\{(x,f(x))|x\in X\right\}$, then for any scaling function $\phi$, we have the map
+\[D_{1,\phi}:\mb R^{n+m}|D^n\times Y\simeq\mb R^{n+m}|M(\phi)\subset\mb R^{n+m}|G(f),\quad(x,y)\mapsto\left(\phi(y)\cdot x,y\right)\]
+
+Given any scaling functions $\phi_1,\phi_2$, since $t\phi_1+(1-t)\phi_2,t\in[0,1]$ is a scaling function as well, we have a homotopy from $D_{1,\phi_1}$ to $D_{1,\phi_2}$ given by $D_{1,t\phi_1+(1-t)\phi_2}$. Let $D_1$ be the homotopy class of this map.
+
+Finally by Tietze extension, we have a map $\tilde f:\mb R^n\to\mb R^m$ giving us the homeomorphism
+\[D_{2,\tilde f}:\mb R^{n+m}|G(f)\to\mb R^{n+m}|X\times 0,\quad(x,y)\mapsto\left(x-\tilde f(y),y\right)\]
+
+Similarly the homotopy class of this is independent of the extension function by linear homotopy. Let $D_2$ be the homotopy class of this map. Finally define $D_\sharp(f)=D_2\circ D_1:\mb R^n|D^n\times\mb R^m|Y\to\mb R^n|X\times\mb R^m|0$.
+
+Note that we have a pointed homotopy equivalence $\alpha:C(X,A)\wedge C(Y,B)\to C\left((X,A)\times(Y,B)\right)$ whenever the projection map $Z\left(A\times Y\supset A\times B\subset X\times B\right)\to A\times Y\cup X\times B$ is a homotopy equivalence. With this, we construct the map $D(f)$ with
+
+\[\begin{tikzcd}
+    C\left(\mb R^m|Y\right)\wedge S^n & S^n\wedge C\left(\mb R^m|Y\right) & C\left(\mb R^n|D^n\right)\wedge C\left(\mb R^m|y\right) \\
+    C\left(\mb R^n|X\right)\wedge S^m & C\left(\mb R^n|X\times\mb R^m|0\right) & C\left(\mb R^n|D^n\times\mb R^m|Y\right)
+	\arrow["{(-1)^{nm}}", from=1-1, to=1-2]
+	\arrow["\cong", from=1-2, to=1-3]
+	\arrow["\alpha", from=1-3, to=2-3]
+	\arrow["{CD_\sharp f}", from=2-3, to=2-2]
+	\arrow["{\alpha^{-1}}", from=2-2, to=2-1]
+	\arrow["Df"', from=1-1, to=2-1]
+\end{tikzcd}\]
+
+Using this functor, one can proof that for closed subsets $X\subset\mb R^n,Y\subset\mb R^m$ which are homotopic with some proper map $f:X\to Y$ and $n\leq m$:
+\begin{itemize}
+    \item If $\mb R^n\neq X$, then $\mb R^m\neq Y$
+    \item If $\mb R^n\neq X$, then $\left(\mb R^n-X,-n\right)\cong\left(\mb R^m-Y,-m\right)$ in $\ST$
+    \item If $\mb R^n=X$, then $\left(S^0,-n-1\right)\cong\left(\mb R^m-Y,-m\right)$ in $\ST$
+    \item If $m=n$, then $\pi_0\left(\mb R^n-X\right)=\pi_0\left(\mb R^m-Y\right)$
+\end{itemize}
+
+We shall now show that $D\left(\left(\mb R^n,X\right)\right)$ is dualizable in the category $\ST$ with dual $\left(X^+,0\right)$. First we define the notion of duality in a symmetric monoidial category $\left(\mc C,\otimes,1\right)$:
+
+A duality between objects $A,B\in \mc C$ consists of the following data:
+\begin{itemize}
+    \item Evaluation map: $\epsilon:B\otimes A\to 1$
+    \item Coevaluation map: $\eta:1\to A\otimes B$
+    \item Triangle identity: $(1\otimes\epsilon)(\eta\otimes1)=\id,\quad(\epsilon\otimes1)(1\otimes\eta)=\id$
+\end{itemize}
+
+This is a duality in the sense that $-\wedge X$ and $Y\wedge-$ are adjoint.
+
+In the case of $\mc C=\ST$, our tensor product is the wedge product and $1=S^0=\left(S^n,-n\right)$. The objects $B=D\left(\left(\mb R^n,X\right)\right),A=X^+$ are dual to each other.
+
+The evaluation map is given by
+\[\epsilon:C\left(\mb R^n|K\right)\wedge C\left(K,\emptyset\right)\cong C\left(\mb R^n|K\times K|K\right)\overset{C(d)}\to C\left(\mb R^n|0\right)\cong S^n\]
+where $d:(x,k)\to x-k$ is the difference map.
+
+For the coevaluation map, let $D$ be a disk that contains $K$ and $V$ be some open neighbourhood of $D$, then consider the diagram
+\[\begin{tikzcd}
+	{\mb R^n|0} & {\mb R^n|D} & {\mb R^n|X} & {V|X} & {V|V\times\mb R^n|X}
+	\arrow["\supset"', from=1-2, to=1-1]
+	\arrow["\subset", from=1-2, to=1-3]
+	\arrow["\supset", from=1-3, to=1-4]
+	\arrow["\Delta", from=1-4, to=1-5]
+\end{tikzcd}\]
+where $\Delta:x\mapsto(x,x)$ is the diagonal map. Under the mapping cone functor, the two $\supset$ becomes a homotopy equivalence, giving us a map $S^n\to V^+\wedge C\left(\mb R^n|X\right)$. Finally composing this with a retraction $V^+\to K^+$, we obtain our coevaluation map. Note that the retraction may not exist. If it exists, $X$ is known as a Euclidean neighbourhood retract (ENR) and the existance is independent of the embedding. For this case, the (co)evaluation maps can be written as
+
+\begin{itemize}
+    \item Evaluation map: $\epsilon:C\left(\mb R^n|K\right)\otimes K^+\to S^n$
+    \item Coevaluation map: $\eta:S^n\to K^+\otimes C\left(\mb R^n|K\right)$
+\end{itemize}
+
+\subsection{(Co)homology}
+
+A homology theory for pointed spaces is a family of functors $\tilde h_n:\TOP^0\to R\hyp\MOD.n\in\mb Z$ and natural transformations $\sigma_{(n)}$ such that $\sigma_{(n)}:\tilde h_n:\tilde h_{n+1}\circ\Sigma$ is an isomorphism and the following axioms hold:
+\begin{itemize}
+    \item \textbf{Homotopy invariance} For each pointed homotopy $f_t$ we have $\tilde h_n(f_0)=\tilde h_n(f_1)$
+    \item \textbf{Exactness} For each pointed map $f:X\to Y$ the image of the sequence $X\to Y\to C(f)$ under $\tilde h_n$ is exact
+\end{itemize}
+
+This theory is called \textbf{additive} if for a family $X_j$ of well pointed spaces, the inclusion $\oplus\tilde h_n(X_j)=\tilde h_n\left(\vee X_j\right)$ is an isomorphism.
+
+The groups $\tilde h_n(S^0)$ are the coefficient groups of the theory.
+
+Cohomology theories are similar except the functor is contravariant. The axioms remain the same.
+
+(Co)homology theory for pairs of spaces can be constructed as $h(X,A)=\tilde h(C(X,A))$ and these satisfies the Eilenberg Steenrod axioms. The excision axiom comes from $C(X-U,A-U)\cong C(X,A)$ under a suitable hypothesis.
+
+A \textbf{pre-spectrum} is a family $Z(n)$ of pointed spaces with maps and a family of maps $e_n:\Sigma Z(n)\to Z(n+1)$ of pointed maps. We shall shall prespectrums spectras as we only work with prespectras.
+
+A \textbf{$\Omega$-spectrum} is a spectrum with the adjoint maps $\epsilon_n:Z(n)\to\Omega Z(n+1)$ adjoint to $e_n$ and these are pointed homotopy equivalences.
+
+For any spectrum $Z=\left(Z(n),e_n\right)$, we construct a cohomology theory as
+\[Z^k(X)=\colim_n\left[\Sigma^{n+k}X,Z(n)\right]^0\]
+where the maps are induced by $e_n\Sigma-$. The axioms are satisfied by direct computation and the cofibre sequence.
+
+If $Z$ is a $\Omega$-spectrum. then $Z^k(X)=\left[X,Z(k)\right]^0$.
+
+We can obtain spectrums from a space $Y$ by $\Sigma^nY$ and if we have another spectrum $Z(n)$, we can construct the spectrum $Y\wedge Z(n)$, This gives us the cohomlogy theory
+\[Z^k(X;Y)=\colim_n\left[\Sigma^nX,Y\wedge Z(n+k)\right]^0\]
+which is a cohomology theory in $X$.
+
+From here, we construct homology theory for a spectrum $Z(n)$ as $E_k(X)=Z^k\left(S^k,Y\right)=Z_{-k}\left(S^k,Y\right)$. The proof is somewhat involved as $Y$ is `in the wrong part' of the hom functors.
+
+From here it's quite strightforward to obtain Alexander duality:
+
+Suppse we have some duality with the (co)evaluation maps
+\begin{itemize}
+    \item Evaluation map: $\epsilon:C\left(\mb R^n|K\right)\otimes K^+\to S^n$
+    \item Coevaluation map: $\eta:S^n\to K^+\otimes C\left(\mb R^n|K\right)$
+\end{itemize}
+
+and we have the map
+
+\[\left[A\wedge S^t,E_{k+t}\right]^0\overset{B\wedge-}\to\left[B\wedge A\wedge S^t,B\wedge E_{k+t}\right]^0\overset{\eta^*}\to\left[S^n\wedge S^t,B\wedge E_{k+t}\right]^0\]
+and this gives us
+\[D^\cdot:E^k(A)\to E_{n-k}(B)\]
+Similarly we can get
+\[D_\cdot:E_{n-k}(B)\to E^k(A)\]
+By duality, we get
+\[D_\cdot D^\cdot=(-1)^{nk}\id\quad D^\cdot D_\cdot=(-1)^{nk}\id\]
+
+Let $PE_*,Ph^*$ be (co)homology theories on $\TOP(2)$ given by $PE_*(X,A)=E_*\left(C(X,A)\right),Ph^*(X,A)=h^*\left(C(X,A)\right)$, then we obtain the usual Alexander duality for compact ENR spaces:
+\[PE_{n-k}\left(\mb R^n,\mb R^n-X\right)=Ph^k(X,\emptyset)\quad PE_{n-k}(X,\emptyset)=Ph^k\left(\mb R^n,\mb R^n-X\right)\]
+
+Another presentation of Alexander duality is given by $Z^k(A\wedge X;Y)=Z_{n-k}(X;B\wedge Y)$
+
+\subsection{Compactly generated spaces}
+
+
