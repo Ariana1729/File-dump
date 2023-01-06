@@ -14,8 +14,17 @@ snippet \|| "left right |" iA
 \left|$1\right|$0
 endsnippet
 
+priority 1
+snippet \\|| "left right norm" iA
+\left\|$1\right\|$0
+endsnippet
+
 snippet \beg "begin{} / end{}" bA
 \begin{$1}
 	$0
 \end{$1}
+endsnippet
+
+snippet \beg "begin{} / end{} iw" i
+\begin{$1}$0\end{$1}
 endsnippet
