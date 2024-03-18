@@ -5,9 +5,14 @@
 set history=500
 set foldmethod=indent
 
+vnoremap <C-r> "hy:%s/<C-r>h//g<left><left><left>
+
+
 " Enable filetype plugins
 filetype plugin on
 filetype indent on
+
+au BufNewFile,BufRead *.sage set filetype=python
 
 " Set to auto read when a file is changed from the outside
 set autoread
@@ -160,6 +165,7 @@ let g:lasttab = 1
 nmap <Leader>tl :exe "tabn ".g:lasttab<CR>
 au TabLeave * let g:lasttab = tabpagenr()
 
+map <leader>n :noh<cr>
 
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
@@ -223,4 +229,4 @@ Plug 'theoremoon/cryptohack-color.vim'
 
 call plug#end()
 
-colorscheme cryptohack
+" colorscheme cryptohack
